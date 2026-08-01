@@ -14,53 +14,184 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container mt-4">
-        <div class="card glass">
-            <h1 class="fade-in">
-                Xpense Tracker
-            </h1>
+    <!--Navbar-->
+    <header class="glass">
+        <div class="container">
+            <div class="logo">
+                <h1>Xpenss Tracker</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="expense.html">Expense</a></li>
+                    <li><a href="budget.html">Budget</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html" class="btn btn-primary">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!--Hero-->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>
+                        Track Every Rupee.
+                        Build Better Financial Habits.
+                    </h1>
 
-            <p class="mt-2">
-                Smart Personal Expense Tracker
-            </p>
+                    <p>
+                        Smart Personal Finance Manager
+                        that helps you save more,
+                        spend wisely and achieve
+                        your financial goals
+                    </p>
 
-            <br>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">
+                            Get Started
+                        </button>
+
+                        <button class="btn btn-outline">
+                            Live Demo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    Dashboard Preview
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Features-->
+    <section class="features">
+        <div class="container"> 
+            <h2>Features</h2>
+
+            <div class="feature-grid">
+                <article class="card">Expense Tracking</article>
+                <article class="card">Income Management</article>
+                <article class="card">Budget Planning</article>
+                <article class="card">Analytics</article>
+                <article class="card">Reports</article>
+                <article class="card">Security</article>
+            </div>
+        </div>
+    </section>
+
+    <!--Statistics-->
+    <section class="stats">
+        <div class="container">
+            <div class="stat-card">
+                <h2>5k</h2>
+                <p>Active Users</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>₹25k</h2>
+                <p>Transactions Tracked</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>99.9%</h2>
+                <p>Security</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>4.8</h2>
+                <p>User Rating</p>
+            </div>
+        </div>
+    </section>
+
+    <!--How it works-->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>1. Sign Up</h3>
+                    <p>Create an account to start tracking your finances.</p>
+                </div>
+
+                <div class="step">
+                    <h3>2. Add Transactions</h3>
+                    <p>Log your income and expenses to keep track of your money.</p>
+                </div>
+
+                <div class="step">
+                    <h3>3. Analyze</h3>
+                    <p>Use our analytics tools to understand your spending habits.</p>
+                </div>
+
+                <div class="step">
+                    <h3>4. Achieve Goals</h3>
+                    <p>Set financial goals and monitor your progress over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Users Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"Xpenss Tracker has completely changed the way I manage my finances. It's intuitive and easy to use!"</p>
+                    <h4>- Rahul Sharma</h4>
+                </div>
+
+                <div class="testimonial-card">
+                    <p>"I love the analytics feature. It helps me understand where my money goes and how to save more."</p>
+                    <h4>- Amit Kumar</h4>
+                </div>
+
+                <div class="testimonial-card">
+                    <p>"The budget planning tools are fantastic. I've been able to set and achieve my financial goals."</p>
+                    <h4>- Manshi Singh</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--CTA-->
+    <section class="cta">
+        <div class="container">
+            <h2>
+                Start Your Financial Journey Today!
+            </h2>
 
             <button class="btn btn-primary">
-                Get Started
-            </button>
-
-            <button class="btn btn-outline">
-                Learn More
+                Create Free Account
             </button>
         </div>
+    </section>
 
-        <br><br>
-        <div class="card glass">
-            <div class="from-group">
-                <label class="form-label">
-                    Email Address
-                </label>
-
-                <input type="email" 
-                       class="form-control" 
-                       placeholder="Enter your email address">
+    <!--Footer-->
+    <footer class="footer">
+        <div class="container footer-content">
+           <div>
+             <h3>Xpenss Tracker</h3>
+             <p>
+                 Smart Personal Finance Manager
+             </p>
             </div>
 
-            <div class="form-group">
-                <label class="form-label">
-                    Password
-                </label>
-
-                <input type="password" 
-                       class="form-control" 
-                       placeholder="Enter your password">
+            <div class="footer-links">
+             <a href="#">Privacy Policy</a>
+             <a href="#">Terms of Service</a>
+             <a href="#">Contact Us</a>
+             <a href="#">Contact</a>
             </div>
-
-            <button class="btn btn-primary btn-block">
-                LOgin
-            </button>
         </div>
-    </div>
+    </footer>
+    <script src="js/landing.js"></script>
 </body>
 </html>

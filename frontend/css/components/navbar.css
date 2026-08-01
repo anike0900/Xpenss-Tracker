@@ -1,0 +1,56 @@
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar{
+    position: sticky;
+    top: 0;
+    z-index: var(--z-navbar);
+
+    width: 100%;
+    height: var(--navbar-height);
+
+    display: flex;
+    align-items: center;
+
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.navbar .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: var(--fw-bold);
+    color: var(--primary);
+
+    cursor: pointer;
+}
+
+.nav-links{
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links a{
+
+    color: var(--text-dark);
+
+    transition: var(--transition);
+
+    font-weight: 500;
+}
+
+.nav-links a:hover{
+
+    color: var(--primary);
+
+}
