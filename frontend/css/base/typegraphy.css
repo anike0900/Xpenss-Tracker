@@ -1,0 +1,59 @@
+/* ==========================================
+   TYPOGRAPHY
+========================================== */
+
+body{
+
+    font-family:var(--font-body);
+
+    font-size:var(--fs-md);
+
+    color:var(--text-dark);
+
+    background:var(--bg-dark);
+
+    line-height:1.7;
+
+    -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,h4,h5,h6{
+
+    font-family:var(--font-heading);
+
+    font-weight:var(--fw-bold);
+
+    line-height:1.2;
+}
+
+h1{
+    font-size:var(--fs-4xl);
+}
+
+h2{
+    font-size:var(--fs-3xl);
+}
+
+h3{
+    font-size:var(--fs-2xl);
+}
+
+h4{
+    font-size:var(--fs-xl);
+}
+
+h5{
+    font-size:20px;
+}
+
+p{
+    color:var(--text-muted-dark);
+}
+
+small{
+    font-size:var(--fs-sm);
+}
+
+strong{
+    font-weight:700;
+}

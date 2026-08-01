@@ -1,0 +1,153 @@
+/* ==========================================
+   XPENSS TRACKER DESIGN SYSTEM
+   Version : 1.0
+   ========================================== */
+
+:root {
+
+    /* =========================
+       Brand Colors
+    ========================= */
+
+    --primary: #14B8A6;
+    --primary-dark: #0F766E;
+    --secondary: #3B82F6;
+    --accent: #8B5CF6;
+
+    /* =========================
+       Status Colors
+    ========================= */
+
+    --success: #22C55E;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --info: #0EA5E9;
+
+    /* =========================
+       Dark Theme
+    ========================= */
+
+    --bg-dark: #0F172A;
+    --surface-dark: #1E293B;
+    --card-dark: #273549;
+
+    --text-dark: #F8FAFC;
+    --text-muted-dark: #94A3B8;
+
+    /* =========================
+       Light Theme
+    ========================= */
+
+    --bg-light: #F8FAFC;
+    --surface-light: #FFFFFF;
+    --card-light: #FFFFFF;
+
+    --text-light: #0F172A;
+    --text-muted-light: #64748B;
+
+    /* =========================
+       Borders
+    ========================= */
+
+    --border-color: rgba(255,255,255,.08);
+
+    /* =========================
+       Border Radius
+    ========================= */
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 28px;
+    --radius-round: 999px;
+
+    /* =========================
+       Shadows
+    ========================= */
+
+    --shadow-sm: 0 4px 10px rgba(0,0,0,.08);
+
+    --shadow-md: 0 10px 25px rgba(0,0,0,.12);
+
+    --shadow-lg: 0 20px 45px rgba(0,0,0,.18);
+
+    --shadow-glow: 0 0 20px rgba(20,184,166,.35);
+
+    /* =========================
+       Glass Effect
+    ========================= */
+
+    --glass-bg: rgba(255,255,255,.08);
+    --glass-border: rgba(255,255,255,.15);
+    --blur: blur(18px);
+
+    /* =========================
+       Typography
+    ========================= */
+
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* =========================
+       Font Sizes
+    ========================= */
+
+    --fs-xs: 12px;
+    --fs-sm: 14px;
+    --fs-md: 16px;
+    --fs-lg: 18px;
+    --fs-xl: 22px;
+    --fs-2xl: 28px;
+    --fs-3xl: 36px;
+    --fs-4xl: 48px;
+
+    /* =========================
+       Font Weight
+    ========================= */
+
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    /* =========================
+       Spacing
+    ========================= */
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-7: 32px;
+    --space-8: 40px;
+    --space-9: 48px;
+    --space-10: 64px;
+
+    /* =========================
+       Layout
+    ========================= */
+
+    --navbar-height: 70px;
+    --sidebar-width: 260px;
+
+    /* =========================
+       Animation
+    ========================= */
+
+    --transition-fast: .2s ease;
+    --transition: .3s ease;
+    --transition-slow: .5s ease;
+
+    /* =========================
+       Z Index
+    ========================= */
+
+    --z-navbar: 1000;
+    --z-sidebar: 1100;
+    --z-modal: 1500;
+    --z-toast: 2000;
+    --z-loader: 3000;
+
+}
