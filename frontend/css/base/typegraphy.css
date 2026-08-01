@@ -6,15 +6,17 @@ body{
 
     font-family:var(--font-body);
 
-    font-size:var(--fs-md);
+    background:
+        radial-gradient(circle at top left,#14B8A620 0%,transparent 35%),
+        radial-gradient(circle at bottom right,#8B5CF620 0%,transparent 35%),
+        var(--bg-dark);
 
     color:var(--text-dark);
 
-    background:var(--bg-dark);
+    min-height:100vh;
 
-    line-height:1.7;
+    transition:var(--transition);
 
-    -webkit-font-smoothing:antialiased;
 }
 
 h1,h2,h3,h4,h5,h6{

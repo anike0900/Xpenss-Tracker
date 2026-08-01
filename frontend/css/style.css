@@ -2,6 +2,11 @@
 @import url('./base/reset.css');
 @import url('./base/typography.css');
 @import url('./base/animations.css');
+@import url('./base/utilities.css');
+
+/*themes */
+@import url('./themes/dark.css');
+@import url('./themes/light.css');
 
 /* Components */
 @import url('./components/buttons.css');
