@@ -1,0 +1,92 @@
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.btn{
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    padding:14px 26px;
+
+    border-radius:var(--radius-md);
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+    cursor:pointer;
+
+    border:none;
+
+}
+
+/* Primary */
+
+.btn-primary{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--shadow-glow);
+
+}
+
+/* Secondary */
+
+.btn-secondary{
+
+    background:var(--secondary);
+
+    color:white;
+
+}
+
+/* Outline */
+
+.btn-outline{
+
+    border:2px solid var(--primary);
+
+    color:var(--primary);
+
+}
+
+.btn-outline:hover{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+/* Danger */
+
+.btn-danger{
+
+    background:var(--danger);
+
+    color:white;
+
+}
+
+/* Full Width */
+
+.btn-block{
+
+    width:100%;
+
+}

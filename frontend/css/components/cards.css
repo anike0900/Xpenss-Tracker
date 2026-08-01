@@ -1,0 +1,55 @@
+/* ==========================================
+   CARDS
+========================================== */
+
+.card{
+
+    background:var(--glass-bg);
+
+    backdrop-filter:var(--blur);
+
+    border:1px solid var(--glass-border);
+
+    border-radius:var(--radius-lg);
+
+    padding:24px;
+
+    box-shadow:var(--shadow-md);
+
+    transition:var(--transition);
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+/* Dashboard Card */
+
+.stat-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.stat-value{
+
+    font-size:32px;
+
+    font-weight:700;
+
+}
+
+.stat-title{
+
+    color:var(--text-muted-dark);
+
+}
