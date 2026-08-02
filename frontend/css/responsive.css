@@ -1,0 +1,45 @@
+@media(max-width:992px){
+
+.hero-content{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+
+.hero-text p{
+
+margin:auto;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+}
+
+.hero-image{
+
+margin-top:50px;
+
+}
+
+.hero-text h1{
+
+font-size:3rem;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.hero-text h1{
+
+font-size:2.3rem;
+
+}
+
+}
