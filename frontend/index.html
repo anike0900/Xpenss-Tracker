@@ -72,28 +72,80 @@
 
                 <div class="hero-image">
                    <div class="dashboard-card">
-                    <small>Total Balance</small>
+                    <div class="dashboard-header"> 
+                        <div>
+                            <small>Total Balance</small>
+                            <h2 class="balance">₹ 25,000</h2>
+                        </div>
 
-                    <div class="balance">
-                        <span>₹</span>
-                        <h2>12,345.67</h2>
+                        <div class="notification">
+                            🔔
+                        </div>
                     </div>
 
-                    <hr>
-                    <div class="dashboard-stats">
-                        <div>
-                            <strong>₹65K</strong>
-                            <p>Income</p>
+                    <div class="divider"></div>
+                    <div class="dashboard-stats"> 
+                        <div class="mini-card">
+                            <span>Income</span>
+                            <strong>₹ 50,000</strong>
                         </div>
 
-                        <div>
-                            <strong>₹52K</strong>
-                            <p>Expenses</p>
+                        <div class="mini-card">
+                            <span>Expense</span>
+                            <strong>₹ 25,000</strong>
                         </div>
 
-                        <div>
-                            <strong>₹13K</strong>
-                            <p>Savings</p>
+                        <div class="mini-card">
+                            <span>Saving</span>
+                            <strong>₹ 10,000</strong>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+                    <h4>Weekly Spending</h4>
+                    <style>
+                        .chart-bars span {
+                            display: inline-block;
+                            width: 12%;
+                            border-radius: 999px 999px 0 0;
+                            background: linear-gradient(180deg, rgba(106, 120, 255, 0.35), rgba(106, 120, 255, 0.1));
+                            margin: 0 0.4rem;
+                        }
+                        .chart-bars span.bar-1 { height: 40px; }
+                        .chart-bars span.bar-2 { height: 65px; }
+                        .chart-bars span.bar-3 { height: 50px; }
+                        .chart-bars span.bar-4 { height: 85px; }
+                        .chart-bars span.bar-5 { height: 55px; }
+                        .chart-bars span.bar-6 { height: 75px; }
+                        .chart-bars span.bar-7 { height: 45px; }
+                    </style>
+                    <div class="chart-bars">
+                        <span class="bar-1"></span>
+                        <span class="bar-2"></span>
+                        <span class="bar-3"></span>
+                        <span class="bar-4"></span>
+                        <span class="bar-5"></span>
+                        <span class="bar-6"></span>
+                        
+                    </div>
+
+                    <div class="divider"></div>
+                    <h4>Recent Transaction</h4>
+                    <div class="transaction-list">
+                        <div class="transaction-item"> 
+                            <span>🛒 Grocery</span>
+                            <strong>-₹1,200</strong>
+                        </div>
+
+                        <div class="transaction-item">
+                            <span>💼 Salary</span>
+                            <strong class="income">+₹50,000</strong>
+                        </div>
+
+                        <div class="transaction-item">
+                            <span>☕ Coffee</span>
+                            <strong>-₹250</strong>
+                        </div>
                     </div>
                    </div>
                 </div>

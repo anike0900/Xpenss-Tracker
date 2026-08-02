@@ -63,3 +63,38 @@
 
     animation:scaleUp .5s ease;
 }
+
+@keyframes growBar{
+
+    from{
+
+        height:0;
+
+    }
+}
+.dashboard-card{
+
+    animation:floatCard 5s ease-in-out infinite;
+
+}
+
+@keyframes floatCard{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+}
