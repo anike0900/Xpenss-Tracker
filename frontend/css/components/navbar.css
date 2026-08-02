@@ -43,24 +43,27 @@
 
 .logo{
 
-    display:flex;
+display:flex;
 
-    align-items:center;
-
-    gap:10px;
-
-    font-family:var(--font-heading);
-
-    font-size:1.5rem;
-
-    font-weight:700;
-
-    color:var(--primary);
-
-    cursor:pointer;
+align-items:center;
 
 }
 
+.logo img{
+
+height:42px;
+
+width:auto;
+
+transition:.35s;
+
+}
+
+.logo img:hover{
+
+transform:scale(1.05);
+
+}
 /* Navigation */
 
 .nav-links{

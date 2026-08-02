@@ -1,0 +1,11 @@
+<svg width="180" height="48" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<rect x="2" y="6" width="36" height="36" rx="10" fill="#14B8A6"></rect>
+
+<path d="M12 30L20 16L28 30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+
+<text x="52" y="31" fill="#F8FAFC" font-family="Poppins" font-size="24" font-weight="700">
+XPENSS
+</text>
+
+</svg>
