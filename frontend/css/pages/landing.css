@@ -596,3 +596,132 @@
     color:#fff;
 
 }
+/* ==========================================
+   CTA SECTION
+========================================== */
+
+.cta{
+
+    padding:120px 0;
+
+}
+
+.cta-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    text-align:center;
+
+    padding:80px 40px;
+
+    border-radius:32px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(20,184,166,.18),
+        rgba(59,130,246,.12)
+    );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+}
+
+/* Decorative Glow */
+
+.cta-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:320px;
+
+    height:320px;
+
+    background:rgba(20,184,166,.20);
+
+    filter:blur(120px);
+
+    top:-120px;
+
+    left:-120px;
+
+    z-index:-1;
+
+}
+
+.cta-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    background:rgba(139,92,246,.18);
+
+    filter:blur(100px);
+
+    right:-80px;
+
+    bottom:-80px;
+
+    z-index:-1;
+
+}
+
+.cta-card h2{
+
+    font-size:3rem;
+
+    margin:25px 0;
+
+}
+
+.cta-card p{
+
+    max-width:650px;
+
+    margin:0 auto 40px;
+
+    color:var(--text-muted-dark);
+
+    line-height:1.8;
+
+}
+
+.cta-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:40px;
+
+}
+
+.cta-features{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+    color:var(--text-muted-dark);
+
+    font-weight:500;
+
+}

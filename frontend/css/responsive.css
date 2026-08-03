@@ -99,3 +99,27 @@ grid-template-columns:1fr;
 }
 
 }
+
+@media(max-width:768px){
+
+.cta-card{
+
+padding:60px 25px;
+
+}
+
+.cta-card h2{
+
+font-size:2.2rem;
+
+}
+
+.cta-features{
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+}
