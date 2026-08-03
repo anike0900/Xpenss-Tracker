@@ -98,3 +98,86 @@
 
     }
 }
+/* ==========================================
+   SCROLL REVEAL
+========================================== */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+
+}
+
+.reveal.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+/* Left */
+
+.reveal-left{
+
+    opacity:0;
+
+    transform:translateX(-70px);
+
+    transition:.8s;
+
+}
+
+.reveal-left.show{
+
+    opacity:1;
+
+    transform:translateX(0);
+
+}
+
+/* Right */
+
+.reveal-right{
+
+    opacity:0;
+
+    transform:translateX(70px);
+
+    transition:.8s;
+
+}
+
+.reveal-right.show{
+
+    opacity:1;
+
+    transform:translateX(0);
+
+}
+
+/* Zoom */
+
+.reveal-zoom{
+
+    opacity:0;
+
+    transform:scale(.9);
+
+    transition:.8s;
+
+}
+
+.reveal-zoom.show{
+
+    opacity:1;
+
+    transform:scale(1);
+
+}
