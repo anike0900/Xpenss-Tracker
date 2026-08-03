@@ -1,0 +1,96 @@
+/* ==========================================
+   NAVBAR EFFECTS
+========================================== */
+
+.navbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    z-index:1000;
+
+    transition:all .35s ease;
+
+}
+
+/* Scroll State */
+
+.navbar.scrolled{
+
+    padding:12px 0;
+
+    background:rgba(15,23,42,.85);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 8px 30px rgba(0,0,0,.25);
+
+}
+
+/* Active Link */
+
+.nav-links a{
+
+    position:relative;
+
+    transition:.3s;
+
+}
+
+.nav-links a.active{
+
+    color:var(--primary);
+
+}
+
+.nav-links a.active::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:100%;
+
+    height:2px;
+
+    background:var(--primary);
+
+    border-radius:20px;
+
+}
+/* ==========================================
+   PROGRESS BAR
+========================================== */
+
+#progressBar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:0;
+
+    height:4px;
+
+    z-index:2000;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+}
