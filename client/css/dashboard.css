@@ -1,0 +1,77 @@
+/* ==========================================
+   ANALYTICS
+========================================== */
+
+.chart-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:24px;
+
+}
+
+.chart-header h2{
+
+    font-size:22px;
+
+}
+
+.chart-header p{
+
+    margin-top:6px;
+
+    color:var(--text-secondary);
+
+}
+
+.chart-container{
+
+    position:relative;
+
+    height:340px;
+
+}
+
+.chart-empty{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    gap:18px;
+
+}
+
+.chart-empty i{
+
+    font-size:50px;
+
+    color:var(--primary);
+
+}
+
+.chart-empty h3{
+
+    font-size:20px;
+
+}
+
+.chart-empty p{
+
+    max-width:260px;
+
+}

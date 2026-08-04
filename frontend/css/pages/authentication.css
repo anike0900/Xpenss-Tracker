@@ -1,355 +1,263 @@
 /* ==========================================
    AUTHENTICATION LAYOUT
 ========================================== */
-
 body{
-
     margin:0;
     font-family:'Inter',sans-serif;
     background:#0F172A;
     color:#fff;
-
 }
 
 .auth-container{
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     min-height:100vh;
-
 }
 
 .auth-left{
-
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
-
     padding:60px;
-
     background:
     linear-gradient(
     135deg,
     rgba(20,184,166,.15),
     rgba(59,130,246,.08)
     );
-
 }
 
 .auth-left img{
-
     width:70%;
     max-width:420px;
-
 }
 
 .auth-left h1{
-
     margin-top:30px;
-
     font-size:2.5rem;
-
 }
 
 .auth-left p{
-
     max-width:450px;
-
     text-align:center;
-
     color:#CBD5E1;
-
     line-height:1.8;
-
 }
 
 .auth-right{
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     padding:50px;
-
 }
 
 .auth-card{
-
     width:100%;
     max-width:480px;
-
     background:rgba(255,255,255,.05);
-
     border:1px solid rgba(255,255,255,.08);
-
     border-radius:24px;
-
     padding:40px;
-
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
-
     box-shadow:0 20px 50px rgba(0,0,0,.30);
-
 }
 
 @media(max-width:992px){
-
 .auth-container{
-
 grid-template-columns:1fr;
-
 }
-
 .auth-left{
-
 display:none;
-
 }
-
 .auth-card{
-
 max-width:100%;
-
 }
-
 }
 
 /* ==========================================
    AUTH FORM
 ========================================== */
-
 .auth-form{
-
     margin-top:30px;
-
 }
 
 .form-group{
-
     margin-bottom:20px;
-
 }
 
 .form-group label{
-
     display:block;
-
-    margin-bottom:8px;
-
+    margin-top:8px;
     font-weight:500;
-
     color:#E2E8F0;
-
 }
 
 .form-group input{
-
     width:100%;
-
     padding:14px 16px;
-
     border:1px solid rgba(255,255,255,.08);
-
     border-radius:12px;
-
     background:rgba(255,255,255,.05);
-
     color:#fff;
-
     font-size:15px;
-
     transition:.3s;
-
     box-sizing:border-box;
-
 }
 
 .form-group input:focus{
-
     border-color:var(--primary);
-
     outline:none;
-
     box-shadow:0 0 0 4px rgba(20,184,166,.15);
-
 }
 
 .form-group input::placeholder{
-
     color:#94A3B8;
-
 }
 
 /*password*/
 .password-wrapper{
-
     position:relative;
+    margin-bottom:20px;
+}
 
+/* FIX: password/confirm-password inputs live inside .password-wrapper,
+   not .form-group, so they never received the shared input styling.
+   Added here, with extra right padding so text doesn't run under the
+   eye icon button. */
+.password-wrapper input{
+    width:100%;
+    padding:14px 44px 14px 16px;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
+    color:#fff;
+    font-size:15px;
+    transition:.3s;
+    box-sizing:border-box;
+}
+
+.password-wrapper input:focus{
+    border-color:var(--primary);
+    outline:none;
+    box-shadow:0 0 0 4px rgba(20,184,166,.15);
+}
+
+.password-wrapper input::placeholder{
+    color:#94A3B8;
+}
+
+.password-wrapper label{
+    display:block;
+    margin-top:8px;
+    font-weight:500;
+    color:#E2E8F0;
 }
 
 .toggle-password{
-
     position:absolute;
-
     top:50%;
-
-    right:15px;
-
+    right:16px;
     transform:translateY(-50%);
-
     border:none;
-
-    background:none;
-
+    background:transparent;
     color:#94A3B8;
-
     cursor:pointer;
-
     font-size:18px;
+    transition:color .25s ease, transform .25s ease;
+}
 
+.toggle-password:hover{
+    color:var(--primary);
+    transform:translateY(-50%) scale(1.1);
+}
+
+.toggle-password:focus-visible{
+    outline:2px solid var(--primary);
+    outline-offset:4px;
+    border-radius:8px;
 }
 
 /*checkbox*/
 .checkbox-group{
-
     display:flex;
-
     align-items:flex-start;
-
     gap:10px;
-
     margin:20px 0;
-
     font-size:14px;
-
     color:#CBD5E1;
-
 }
 
 .checkbox-group input{
-
     margin-top:4px;
-
 }
 
 .checkbox-group a{
-
     color:var(--primary);
-
     text-decoration:none;
-
 }
 
 .auth-btn{
-
     width:100%;
-
     margin-top:15px;
-
     padding:15px;
-
     font-size:16px;
-
 }
 
 .auth-footer{
-
     text-align:center;
-
     margin-top:25px;
-
     color:#94A3B8;
-
 }
 
 .auth-footer a{
-
     color:var(--primary);
-
     text-decoration:none;
-
     font-weight:600;
-
 }
+
 /* ==========================================
    PASSWORD STRENGTH
 ========================================== */
-
 .password-strength{
-
     margin-top:12px;
-
 }
 
 .strength-bar{
-
     width:100%;
-
     height:8px;
-
     background:rgba(255,255,255,.08);
-
     border-radius:50px;
-
     overflow:hidden;
-
 }
 
 .strength-fill{
-
     width:0;
-
     height:100%;
-
     background:#EF4444;
-
     transition:.35s ease;
-
 }
 
 #strengthText{
-
     display:block;
-
     margin-top:10px;
-
     font-size:14px;
-
     color:#CBD5E1;
-
 }
 
 .password-rules{
-
     margin-top:15px;
-
     padding-left:18px;
-
     color:#94A3B8;
-
     font-size:14px;
-
     line-height:1.9;
-
 }
 
 .password-rules li{
-
     transition:.3s;
-
 }
 
 .password-rules li.valid{
-
     color:#22C55E;
-
 }

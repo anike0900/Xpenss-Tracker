@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xpenss Tracker</title>
+
+    <link rel="stylesheet" href="client/css/style.css">
+    <link rel="stylesheet" href="client/css/responsive.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1><i class="fa-solid fa-wallet"></i> Xpenss Tracker</h1>
+    </header>
+
+    <main class="container">
+
+        <!-- Balance Section -->
+        <section class="balance-card">
+            <h2>Total Balance</h2>
+            <h1 id="balance">₹0.00</h1>
+        </section>
+
+        <!-- Income & Expense -->
+        <section class="summary">
+
+            <div class="card income">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <h3>Income</h3>
+                <p id="income">₹0.00</p>
+            </div>
+
+            <div class="card expense">
+                <i class="fa-solid fa-arrow-trend-down"></i>
+                <h3>Expense</h3>
+                <p id="expense">₹0.00</p>
+            </div>
+
+        </section>
+
+        <!-- Add Transaction -->
+        <section class="transaction-form">
+
+            <h2>Add Transaction</h2>
+
+            <form id="expenseForm">
+
+                <input
+                    type="text"
+                    id="title"
+                    placeholder="Transaction Title"
+                    required>
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount"
+                    required>
+
+                <select id="category" title="Select Category" required>
+                    <option value="">Select Category</option>
+                    <option>Food</option>
+                    <option>Travel</option>
+                    <option>Shopping</option>
+                    <option>Bills</option>
+                    <option>Salary</option>
+                    <option>Entertainment</option>
+                    <option>Others</option>
+                </select>
+
+                <label for="date">Date</label>
+                <input type="date" id="date" required>
+
+                <select id="type" title="Select Type" required>
+                    <option value="">Select Type</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+
+                <button type="submit">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Transaction
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Transaction History -->
+        <section class="history">
+
+            <h2>Recent Transactions</h2>
+
+            <ul id="transactionList">
+
+                <!-- JavaScript se data yaha add hoga -->
+
+            </ul>
+
+        </section>
+
+        <!-- Chart Section -->
+        <section class="chart">
+
+            <h2>Expense Overview</h2>
+
+            <canvas id="expenseChart"></canvas>
+
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="client/js/stroage.js"></script>
+    <script src="client/js/chat.js"></script>
+    <script src="client/js/app.js"></script>
+
+</body>
+</html>

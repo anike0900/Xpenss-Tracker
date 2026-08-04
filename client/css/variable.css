@@ -1,0 +1,153 @@
+/* ======================================================
+   XPENSS TRACKER PRO
+   Design System Variables
+   Version : 2.0
+====================================================== */
+
+:root {
+
+    /* ==========================================
+       COLORS
+    ========================================== */
+
+    --primary: #2563EB;
+    --primary-light: #3B82F6;
+    --primary-dark: #1D4ED8;
+
+    --success: #22C55E;
+    --danger: #EF4444;
+    --warning: #F59E0B;
+    --info: #06B6D4;
+
+    --background: #F8FAFC;
+    --surface: #FFFFFF;
+
+    --sidebar-bg: #FFFFFF;
+    --navbar-bg: #FFFFFF;
+    --card-bg: #FFFFFF;
+
+    --text-primary: #0F172A;
+    --text-secondary: #64748B;
+    --text-light: #94A3B8;
+
+    --border: #E2E8F0;
+
+    /* ==========================================
+       SHADOWS
+    ========================================== */
+
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+
+    --shadow-md: 0 8px 20px rgba(15, 23, 42, 0.08);
+
+    --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.12);
+
+    /* ==========================================
+       BORDER RADIUS
+    ========================================== */
+
+    --radius-sm: 8px;
+
+    --radius-md: 12px;
+
+    --radius-lg: 20px;
+
+    --radius-xl: 28px;
+
+    --radius-round: 999px;
+
+    /* ==========================================
+       SPACING
+    ========================================== */
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-7: 32px;
+    --space-8: 40px;
+    --space-9: 48px;
+    --space-10: 64px;
+
+    /* ==========================================
+       FONT
+    ========================================== */
+
+    --font-primary: "Poppins", sans-serif;
+
+    --font-secondary: "Inter", sans-serif;
+
+    --font-number: "Manrope", sans-serif;
+
+    /* ==========================================
+       FONT SIZE
+    ========================================== */
+
+    --fs-xs: 12px;
+    --fs-sm: 14px;
+    --fs-md: 16px;
+    --fs-lg: 18px;
+    --fs-xl: 22px;
+    --fs-2xl: 28px;
+    --fs-3xl: 36px;
+
+    /* ==========================================
+       FONT WEIGHT
+    ========================================== */
+
+    --fw-normal: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    /* ==========================================
+       SIDEBAR
+    ========================================== */
+
+    --sidebar-width: 280px;
+
+    --navbar-height: 80px;
+
+    /* ==========================================
+       TRANSITIONS
+    ========================================== */
+
+    --transition-fast: .2s ease;
+
+    --transition-normal: .3s ease;
+
+    --transition-slow: .5s ease;
+
+}
+
+[data-theme="dark"] {
+
+    --background: #0F172A;
+
+    --surface: #1E293B;
+
+    --sidebar-bg: #1E293B;
+
+    --navbar-bg: #1E293B;
+
+    --card-bg: #1E293B;
+
+    --text-primary: #F8FAFC;
+
+    --text-secondary: #CBD5E1;
+
+    --text-light: #94A3B8;
+
+    --border: #334155;
+
+}
+
+/* Responsive */
+
+@custom-media --mobile (max-width:576px);
+
+@custom-media --tablet (max-width:768px);
+
+@custom-media --laptop (max-width:1200px);

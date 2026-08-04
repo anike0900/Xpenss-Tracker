@@ -23,15 +23,15 @@
                 alt="Register Illustration"
                 class="auth-illustration">
 
-                <h1>
-                    Smart Expense Management
-                </h1>
+            <h1>
+                Smart Expense Management
+            </h1>
 
-                <p>
-                    Track your income,
-                    control expenses,
-                    achieve financial freedom.
-                </p>
+            <p>
+                Track your income,
+                control expenses,
+                achieve financial freedom.
+            </p>
         </div>
 
         <!--Right panel-->
@@ -45,67 +45,63 @@
                 <!--form-->
                 <form id="registrationForm" class="auth-form">
                     <div class="form-group">
+                        <input type="text" id="name"
+                            placeholder="Enter your full name" required>
+
                         <label for="name">
                             Full Name
                         </label>
-
-                        <input type="text" id="name" 
-                               placeholder="Enter your full name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">
-                            Email Address
-                        </label>
-                        
                         <input type="email" id="email"
                                placeholder="Enter your email"
                                required>
+
+                        <label for="email">
+                            Email Address
+                        </label>
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">
-                            Phone Number
-                        </label>
-
                         <input type="tel" id="phone"
                               placeholder="Enter your phone number"
                               required>
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
                     </div>
 
-                    <div class="form-group">
-                        <label for="password">
+                    <div class="password-wrapper input-box">
+                        <input type="password" id="password"
+                             required>
+                          <label for="password">
                             Password
-                        </label>
+                          </label>
 
-                        <div class="password-wapper">
-                            <input type="password" id="password"
-                                  placeholder="Create a password"
-                                  required>
-
-                                <button type="button" class="toggle-password">
-                                     👁
-                                </button>
-                        </div>
+                          <button type="button"
+                              class="toggle-password"
+                              aria-label="Show password">
+                            <span class="eye-icon">👁️</span>
+                          </button>
                     </div>
 
                     <!---confirm password-->
-
-                    <div class="form-group">
-                        <label for="confirmPassword">
+                    <div class="password-wrapper input-box">
+                     <input
+                          type="password" id="confirmPassword"
+                          placeholder="Confirm your password"
+                          required>
+                         <label for="confirmPassword">
                             Confirm Password
-                        </label>
+                          </label>
 
-                        <div class="password-wapper">
-                            <input type="password" id="confirmPassword"
-                                  placeholder="Confirm your password"
-                                  required>
-
-                                  <button type="button" class="toggle-password">
-                                     👁
-                                  </button>
-                        </div>
-                    </div>
+                          <button type="button" class="toggle-password"
+                                  aria-label="Show Password">
+                                <span class="eye-icon">👁️</span>
+                          </button>
+                   </div>
 
                     <!--password strength-->
                     <div class="password-strength">
@@ -121,9 +117,9 @@
                     <ul class="password-rules">
                         <li id="rule-length">
                             ✖ Minimum 8 characters
-                        </li> 
+                        </li>
 
-                        <li id="rule-uppar">
+                        <li id="rule-upper">
                             ✖ One uppercase letter
                         </li>
 
@@ -145,7 +141,7 @@
                         <input type="checkbox" id="terms" required>
 
                         <label for="terms">
-                            I agree to the 
+                            I agree to the
                             <a href="#">Terms</a>
                             &
                             <a href="#">Privacy Policy</a>
@@ -153,7 +149,7 @@
                     </div>
 
                     <!--Submit-->
-                    <button class="btn btn-primary auth-btn" type=submit>
+                    <button class="btn btn-primary auth-btn" type="submit">
                         Create Account
                     </button>
 
@@ -169,5 +165,6 @@
     </div>
 
     <script src="js/password-strength.js"></script>
+    <script src="js/password-toggle.js"></script>
 </body>
 </html>

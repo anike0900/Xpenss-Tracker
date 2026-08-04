@@ -1,0 +1,223 @@
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar{
+
+    height:80px;
+
+    background:var(--navbar-bg);
+
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+}
+
+/* LEFT */
+
+.navbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+/* MENU */
+
+.menu-btn{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:12px;
+
+    background:#EEF4FF;
+
+    color:var(--primary);
+
+    font-size:18px;
+
+}
+
+/* SEARCH */
+
+.search-box{
+
+    width:420px;
+
+    height:50px;
+
+    background:#F1F5F9;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:0 18px;
+
+}
+
+.search-box i{
+
+    color:var(--text-secondary);
+
+}
+
+.search-box input{
+
+    flex:1;
+
+    font-size:15px;
+
+}
+
+/* RIGHT */
+
+.navbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+/* DATE */
+
+.date-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:var(--text-secondary);
+
+}
+
+/* ICON BUTTON */
+
+.icon-btn{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    background:#F1F5F9;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.3s;
+
+}
+
+.icon-btn:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/* ADD BUTTON */
+
+.add-btn{
+
+    height:48px;
+
+    padding:0 22px;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-light)
+    );
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:600;
+
+    box-shadow:var(--shadow-md);
+
+}
+
+.add-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* PROFILE */
+
+.profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+}
+
+.profile img{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+}
+
+.profile h4{
+
+    font-size:15px;
+
+}
+
+.profile span{
+
+    font-size:13px;
+
+    color:var(--text-secondary);
+
+}
