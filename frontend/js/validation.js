@@ -113,6 +113,7 @@ registerBtn.disabled=!valid;
     input.addEventListener("input",validateForm);
 });
 
+/* form submit */
 form.addEventListener("submit",(e)=>{
 
 e.preventDefault();
@@ -121,12 +122,46 @@ validateForm();
 
 if(registerBtn.disabled){
 
+showToast("Please fix validation errors","error");
+
 return;
 
 }
 
-/* Backend API yaha connect hogi */
+registerBtn.disabled=true;
 
-console.log("Form Submitted");
+const text=document.querySelector(".btn-text");
+
+const spinner=document.querySelector(".spinner");
+
+text.style.display="none";
+
+spinner.style.display="block";
+
+/* Fake API */
+
+setTimeout(()=>{
+
+spinner.style.display="none";
+
+text.style.display="inline";
+
+showToast(
+
+"Registration Successful 🎉",
+
+"success"
+
+);
+
+registerBtn.disabled=false;
+
+/* Backend connect hone ke baad
+
+window.location.href="login.html";
+
+*/
+
+},2000);
 
 });

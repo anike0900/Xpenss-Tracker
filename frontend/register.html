@@ -165,7 +165,10 @@
 
                     <!--Submit-->
                     <button id="registerBtn" class="btn btn-primary auth-btn" type="submit" disabled>
-                        Create Account
+                        <span class="btn-text">
+                            Create Account
+                        </span>
+                        <span class="spinner"></span>
                     </button>
 
                     <div class="auth-footer">
@@ -179,8 +182,16 @@
         </div>
     </div>
 
+    <!--Toast Notification-->
+    <div id="toast" class="toast">
+        <span id="toastMessage">
+            Registration Successful
+        </span>
+    </div>
+
     <script src="js/password-strength.js"></script>
     <script src="js/password-toggle.js"></script>
+    <script src="js/toast.js"></script>
     <script src="js/validation.js"></script>
 </body>
 </html>
