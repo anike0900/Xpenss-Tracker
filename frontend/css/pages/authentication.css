@@ -280,3 +280,76 @@ max-width:100%;
     font-weight:600;
 
 }
+/* ==========================================
+   PASSWORD STRENGTH
+========================================== */
+
+.password-strength{
+
+    margin-top:12px;
+
+}
+
+.strength-bar{
+
+    width:100%;
+
+    height:8px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+}
+
+.strength-fill{
+
+    width:0;
+
+    height:100%;
+
+    background:#EF4444;
+
+    transition:.35s ease;
+
+}
+
+#strengthText{
+
+    display:block;
+
+    margin-top:10px;
+
+    font-size:14px;
+
+    color:#CBD5E1;
+
+}
+
+.password-rules{
+
+    margin-top:15px;
+
+    padding-left:18px;
+
+    color:#94A3B8;
+
+    font-size:14px;
+
+    line-height:1.9;
+
+}
+
+.password-rules li{
+
+    transition:.3s;
+
+}
+
+.password-rules li.valid{
+
+    color:#22C55E;
+
+}

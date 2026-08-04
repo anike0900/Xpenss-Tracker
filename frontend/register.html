@@ -107,6 +107,39 @@
                         </div>
                     </div>
 
+                    <!--password strength-->
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div class="strength-fill"></div>
+                        </div>
+
+                        <span id="strengthText">
+                            Password Strength
+                        </span>
+                    </div>
+
+                    <ul class="password-rules">
+                        <li id="rule-length">
+                            ✖ Minimum 8 characters
+                        </li> 
+
+                        <li id="rule-uppar">
+                            ✖ One uppercase letter
+                        </li>
+
+                        <li id="rule-lower">
+                            ✖ One lowercase letter
+                        </li>
+
+                        <li id="rule-number">
+                            ✖ One number
+                        </li>
+
+                        <li id="rule-special">
+                            ✖ One special character
+                        </li>
+                    </ul>
+
                     <!--Terms-->
                     <div class="checkbox-group">
                         <input type="checkbox" id="terms" required>
@@ -134,5 +167,7 @@
             </div>
         </div>
     </div>
+
+    <script src="js/password-strength.js"></script>
 </body>
 </html>
