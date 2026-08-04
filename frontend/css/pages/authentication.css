@@ -158,13 +158,20 @@ max-width:100%;
 .toggle-password{
     position:absolute;
     top:50%;
-    right:16px;
+    right:14px;
     transform:translateY(-50%);
+    width:24px;
+    height:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
     border:none;
     background:transparent;
     color:#94A3B8;
     cursor:pointer;
-    font-size:18px;
+    font-size:16px;
+    line-height:1;
     transition:color .25s ease, transform .25s ease;
 }
 
@@ -261,174 +268,39 @@ max-width:100%;
 .password-rules li.valid{
     color:#22C55E;
 }
-/* ==========================================
-   ERROR MESSAGE
-========================================== */
 
-.error-message{
+.auth-card{
 
-    display:block;
-
-    margin-top:6px;
-
-    font-size:13px;
-
-    color:#EF4444;
-
-    min-height:18px;
+    animation:fadeUp .8s ease;
 
 }
 
-.input-box.success input{
+@keyframes fadeUp{
 
-    border-color:#22C55E;
+    from{
 
-}
+        opacity:0;
+        transform:translateY(40px);
 
-.input-box.error input{
+    }
 
-    border-color:#EF4444;
+    to{
 
-}
+        opacity:1;
+        transform:translateY(0);
 
-.input-box.success label{
-
-    color:#22C55E;
-
-}
-
-.input-box.error label{
-
-    color:#EF4444;
+    }
 
 }
 
-.auth-btn:disabled{
-    opacity: .6;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
+.auth-btn{
 
-/*==========================================
-        TOAST NOTIFICATION
-==========================================*/
-
-.toast{
-
-    position:fixed;
-
-    top:30px;
-
-    right:30px;
-
-    background:#1E293B;
-
-    color:#fff;
-
-    padding:16px 22px;
-
-    border-left:5px solid var(--primary);
-
-    border-radius:12px;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.25);
-
-    opacity:0;
-
-    transform:translateX(120%);
-
-    transition:.35s;
-
-    z-index:9999;
+    transition:.35s ease;
 
 }
 
-.toast.show{
+.auth-btn:hover{
 
-    opacity:1;
-
-    transform:translateX(0);
-
-}
-
-.toast.success{
-
-    border-color:#22C55E;
-
-}
-
-.toast.error{
-
-    border-color:#EF4444;
-
-}
-
-/*==========================================
-        BUTTON SPINNER
-==========================================*/
-
-.spinner{
-
-display:none;
-
-width:20px;
-
-height:20px;
-
-border:3px solid rgba(255,255,255,.3);
-
-border-top:3px solid white;
-
-border-radius:50%;
-
-animation:spin .7s linear infinite;
-
-margin:auto;
-
-}
-
-@keyframes spin{
-
-100%{
-
-transform:rotate(360deg);
-
-}
-
-}
-.remember-forgot{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin:20px 0;
-
-font-size:14px;
-
-}
-
-.remember-forgot a{
-
-color:var(--primary);
-
-text-decoration:none;
-
-}
-
-.remember-forgot label{
-
-display:flex;
-
-align-items:center;
-
-gap:8px;
-
-cursor:pointer;
-
-color:#CBD5E1;
+    transform:translateY(-3px);
 
 }
