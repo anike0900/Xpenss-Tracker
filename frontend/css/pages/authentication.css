@@ -323,35 +323,42 @@ margin:35px 0;
 
 .otp-input{
 
-width:60px;
+    width:60px;
+    height:65px;
 
-height:65px;
+    border-radius:16px;
 
-border-radius:16px;
+    border:1px solid rgba(255,255,255,.1);
 
-border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.05);
 
-background:rgba(255,255,255,.05);
+    text-align:center;
 
-text-align:center;
+    font-size:28px;
 
-font-size:28px;
+    font-weight:700;
 
-font-weight:700;
+    color:#fff;
 
-color:#fff;
+    transition:.3s;
 
-transition:.3s;
+    caret-color:transparent;
 
 }
 
 .otp-input:focus{
 
-outline:none;
+    outline:none;
 
-border-color:var(--primary);
+    border-color:var(--primary);
 
-box-shadow:0 0 20px rgba(20,184,166,.3);
+    transform:translateY(-4px);
+
+    box-shadow:
+
+        0 0 0 4px rgba(20,184,166,.15),
+
+        0 12px 30px rgba(20,184,166,.25);
 
 }
 
