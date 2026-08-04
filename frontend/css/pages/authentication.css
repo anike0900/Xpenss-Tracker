@@ -261,3 +261,51 @@ max-width:100%;
 .password-rules li.valid{
     color:#22C55E;
 }
+/* ==========================================
+   ERROR MESSAGE
+========================================== */
+
+.error-message{
+
+    display:block;
+
+    margin-top:6px;
+
+    font-size:13px;
+
+    color:#EF4444;
+
+    min-height:18px;
+
+}
+
+.input-box.success input{
+
+    border-color:#22C55E;
+
+}
+
+.input-box.error input{
+
+    border-color:#EF4444;
+
+}
+
+.input-box.success label{
+
+    color:#22C55E;
+
+}
+
+.input-box.error label{
+
+    color:#EF4444;
+
+}
+
+.auth-btn:disabled{
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}

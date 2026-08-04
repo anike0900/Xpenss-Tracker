@@ -51,6 +51,9 @@
                         <label for="name">
                             Full Name
                         </label>
+
+                        <small class="error-message"></small>
+
                     </div>
 
                     <div class="form-group">
@@ -61,6 +64,9 @@
                         <label for="email">
                             Email Address
                         </label>
+
+                        <small class="error-message"></small>
+
                     </div>
 
                     <div class="form-group">
@@ -71,6 +77,9 @@
                         <label for="phone">
                             Phone Number
                         </label>
+
+                        <small class="error-message"></small>
+
                     </div>
 
                     <div class="password-wrapper input-box">
@@ -79,6 +88,9 @@
                           <label for="password">
                             Password
                           </label>
+
+                          <small class="error-message"></small>
+
 
                           <button type="button"
                               class="toggle-password"
@@ -96,6 +108,9 @@
                          <label for="confirmPassword">
                             Confirm Password
                           </label>
+
+                          <small class="error-message"></small>
+
 
                           <button type="button" class="toggle-password"
                                   aria-label="Show Password">
@@ -149,7 +164,7 @@
                     </div>
 
                     <!--Submit-->
-                    <button class="btn btn-primary auth-btn" type="submit">
+                    <button id="registerBtn" class="btn btn-primary auth-btn" type="submit" disabled>
                         Create Account
                     </button>
 
@@ -166,5 +181,6 @@
 
     <script src="js/password-strength.js"></script>
     <script src="js/password-toggle.js"></script>
+    <script src="js/validation.js"></script>
 </body>
 </html>
