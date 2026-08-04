@@ -397,3 +397,38 @@ transform:rotate(360deg);
 }
 
 }
+.remember-forgot{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin:20px 0;
+
+font-size:14px;
+
+}
+
+.remember-forgot a{
+
+color:var(--primary);
+
+text-decoration:none;
+
+}
+
+.remember-forgot label{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+cursor:pointer;
+
+color:#CBD5E1;
+
+}
