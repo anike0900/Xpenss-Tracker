@@ -1,0 +1,124 @@
+/* ==========================================
+   AUTHENTICATION LAYOUT
+========================================== */
+
+body{
+
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background:#0F172A;
+    color:#fff;
+
+}
+
+.auth-container{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    min-height:100vh;
+
+}
+
+.auth-left{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:60px;
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(20,184,166,.15),
+    rgba(59,130,246,.08)
+    );
+
+}
+
+.auth-left img{
+
+    width:70%;
+    max-width:420px;
+
+}
+
+.auth-left h1{
+
+    margin-top:30px;
+
+    font-size:2.5rem;
+
+}
+
+.auth-left p{
+
+    max-width:450px;
+
+    text-align:center;
+
+    color:#CBD5E1;
+
+    line-height:1.8;
+
+}
+
+.auth-right{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:50px;
+
+}
+
+.auth-card{
+
+    width:100%;
+    max-width:480px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:40px;
+
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+
+    box-shadow:0 20px 50px rgba(0,0,0,.30);
+
+}
+
+@media(max-width:992px){
+
+.auth-container{
+
+grid-template-columns:1fr;
+
+}
+
+.auth-left{
+
+display:none;
+
+}
+
+.auth-card{
+
+max-width:100%;
+
+}
+
+}
