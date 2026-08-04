@@ -1,0 +1,25 @@
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+@media (prefers-reduced-motion: reduce){
+
+*{
+
+animation:none !important;
+
+transition:none !important;
+
+scroll-behavior:auto !important;
+
+}
+
+}
+
+button.focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline:2px solid var(--primary);
+    outline-offset:4px;
+    border-radius:8px;
+}

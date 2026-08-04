@@ -45,29 +45,32 @@
 }
 
 .nav-links a.active{
-
     color:var(--primary);
-
 }
 
-.nav-links a.active::after{
+.nav-links a::after{
 
     content:"";
 
     position:absolute;
 
-    left:0;
-
     bottom:-8px;
 
-    width:100%;
+    left:50%;
+
+    width:0;
 
     height:2px;
 
     background:var(--primary);
 
-    border-radius:20px;
+    transition:.35s;
 
+    transform:translateX(-50%);
+
+}
+.nav-links a:hover::after{
+    width:100%;
 }
 /* ==========================================
    PROGRESS BAR
