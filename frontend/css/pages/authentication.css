@@ -122,3 +122,161 @@ max-width:100%;
 }
 
 }
+
+/* ==========================================
+   AUTH FORM
+========================================== */
+
+.auth-form{
+
+    margin-top:30px;
+
+}
+
+.form-group{
+
+    margin-bottom:20px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:500;
+
+    color:#E2E8F0;
+
+}
+
+.form-group input{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.05);
+
+    color:#fff;
+
+    font-size:15px;
+
+    transition:.3s;
+
+    box-sizing:border-box;
+
+}
+
+.form-group input:focus{
+
+    border-color:var(--primary);
+
+    outline:none;
+
+    box-shadow:0 0 0 4px rgba(20,184,166,.15);
+
+}
+
+.form-group input::placeholder{
+
+    color:#94A3B8;
+
+}
+
+/*password*/
+.password-wrapper{
+
+    position:relative;
+
+}
+
+.toggle-password{
+
+    position:absolute;
+
+    top:50%;
+
+    right:15px;
+
+    transform:translateY(-50%);
+
+    border:none;
+
+    background:none;
+
+    color:#94A3B8;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+
+/*checkbox*/
+.checkbox-group{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+    margin:20px 0;
+
+    font-size:14px;
+
+    color:#CBD5E1;
+
+}
+
+.checkbox-group input{
+
+    margin-top:4px;
+
+}
+
+.checkbox-group a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+}
+
+.auth-btn{
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:15px;
+
+    font-size:16px;
+
+}
+
+.auth-footer{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#94A3B8;
+
+}
+
+.auth-footer a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
