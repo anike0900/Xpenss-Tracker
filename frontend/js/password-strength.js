@@ -1,5 +1,6 @@
 const passwordInput =
-document.getElementById("password");
+document.getElementById("password") ||
+document.getElementById("newPassword");
 
 const strengthFill =
 document.querySelector(".strength-fill");

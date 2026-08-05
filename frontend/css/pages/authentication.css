@@ -394,3 +394,35 @@ max-width:100%;
     color:var(--primary);
     margin-bottom:20px;
 }
+
+.success-animation {
+    animation:pop .4s ease;
+}
+
+@keyframes pop {
+    0%{
+        transform:scale(.8);
+        opacity:0;
+    }
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@media(max-width:576px){
+    .reset-icon{
+        width:60px;
+        height:60px;
+       font-size:28px;
+    }
+
+    .auth-card{
+        padding: 25px;
+    }
+
+    .auth-btn{
+        height:48px;
+        font-size:15px;
+    }
+}
