@@ -270,122 +270,107 @@ max-width:100%;
 }
 
 .auth-card{
-
     animation:fadeUp .8s ease;
-
 }
 
 @keyframes fadeUp{
-
     from{
-
         opacity:0;
         transform:translateY(40px);
-
     }
-
     to{
-
         opacity:1;
         transform:translateY(0);
-
     }
-
 }
 
 .auth-btn{
-
     transition:.35s ease;
-
 }
 
 .auth-btn:hover{
-
     transform:translateY(-3px);
-
 }
 
-/*==========================================
-            OTP
-==========================================*/
+/* ==========================================
+   OTP
+========================================== */
 
+/* FIX: 6 boxes at a fixed 60px + 5 gaps at 12px needed 420px, but the
+   card's available content width is only 400px (480 max-width minus
+   80px padding) — the boxes were overflowing/squishing. Using flex:1
+   with a max-width cap lets them size to whatever room is actually
+   available, on any screen width. */
 .otp-container{
-
-display:flex;
-
-justify-content:space-between;
-
-gap:12px;
-
-margin:35px 0;
-
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin:35px 0;
 }
 
 .otp-input{
-
-    width:60px;
+    flex:1;
+    min-width:0;
+    max-width:58px;
     height:65px;
-
     border-radius:16px;
-
     border:1px solid rgba(255,255,255,.1);
-
     background:rgba(255,255,255,.05);
-
     text-align:center;
-
     font-size:28px;
-
     font-weight:700;
-
     color:#fff;
-
-    transition:.3s;
-
+    transition:.25s ease;
     caret-color:transparent;
-
 }
 
 .otp-input:focus{
-
     outline:none;
-
     border-color:var(--primary);
-
     transform:translateY(-4px);
-
     box-shadow:
-
         0 0 0 4px rgba(20,184,166,.15),
-
         0 12px 30px rgba(20,184,166,.25);
+}
 
+.otp-input.filled{
+    border-color:#22C55E;
+    box-shadow:0 0 18px rgba(34,197,94,.3);
 }
 
 .otp-timer{
+    text-align:center;
+    margin-top:20px;
+    color:#CBD5E1;
+}
 
-text-align:center;
+/* OTP Header */
+.otp-header{
+    text-align:center;
+    margin-bottom:30px;
+}
 
-margin-top:20px;
-
-color:#CBD5E1;
-
+.otp-icon{
+    width:80px;
+    height:80px;
+    margin:auto;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    background:rgba(20,184,166,.15);
+    color:var(--primary);
+    margin-bottom:18px;
 }
 
 .resend-text{
-
-text-align:center;
-
-margin:18px 0;
-
+    text-align:center;
+    margin:18px 0;
 }
 
 .resend-text a{
-
-color:var(--primary);
-
-text-decoration:none;
-
-font-weight:600;
-
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:600;
 }
