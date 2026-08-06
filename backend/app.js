@@ -3,6 +3,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
@@ -11,6 +12,8 @@ app.use(helmet());
 
 // Logging
 app.use(morgan("dev"));
+
+app.use("/api/v1/auth", authRoutes);
 
 // CORS
 app.use(cors({
