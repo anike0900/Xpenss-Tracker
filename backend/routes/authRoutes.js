@@ -9,11 +9,14 @@ const {
     logoutUser
 } = require("../controllers/authController");
 
+const protect = require("../middleware/authMiddleware");
+
+
 router.post("/register", registerUser);
 
 router.post("/login", loginUser);
 
-router.get("/me", getCurrentUser);
+router.get("/me", protect, getCurrentUser);
 
 router.post("/logout", logoutUser);
 

@@ -13,20 +13,21 @@ app.use(helmet());
 // Logging
 app.use(morgan("dev"));
 
-app.use("/api/v1/auth", authRoutes);
-
 // CORS
 app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials: true
 }));
 
-// Body Parser
+// ✅ Body Parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Cookies
 app.use(cookieParser());
+
+// ✅ Routes
+app.use("/api/v1/auth", authRoutes);
 
 // Health Check
 app.get("/", (req, res) => {
