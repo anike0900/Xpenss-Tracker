@@ -4,26 +4,35 @@ const User = require("../models/User");
 const protect = async (req, res, next) => {
     try {
 
-        // Get token from Authorization header
+        let token;
+
+        // 1️⃣ Check Authorization Header
         const authHeader = req.headers.authorization;
 
-        if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        if (authHeader && authHeader.startsWith("Bearer ")) {
+            token = authHeader.split(" ")[1];
+        }
+
+        // 2️⃣ If no Bearer token, check Cookie
+        if (!token && req.cookies?.token) {
+            token = req.cookies.token;
+        }
+
+        // 3️⃣ Token missing
+        if (!token) {
             return res.status(401).json({
                 success: false,
                 message: "Not authorized. Token missing."
             });
         }
 
-        // Extract token
-        const token = authHeader.split(" ")[1];
-
-        // Verify token
+        // 4️⃣ Verify JWT
         const decoded = jwt.verify(
             token,
             process.env.JWT_SECRET
         );
 
-        // Find user
+        // 5️⃣ Find user
         const user = await User.findById(decoded.id);
 
         if (!user) {
@@ -33,7 +42,7 @@ const protect = async (req, res, next) => {
             });
         }
 
-        // Attach user to request
+        // 6️⃣ Attach user
         req.user = user;
 
         next();

@@ -1,14 +1,12 @@
-const form = document.getElementById("registerForm");
+const form = document.getElementById("registrationForm");
 
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
 const passwordInput = document.getElementById("password");
-const confirmPasswordInput =
-document.getElementById("confirmPassword");
+const confirmPasswordInput = document.getElementById("confirmPassword");
 
-const registerBtn =
-document.getElementById("registerBtn");
+const registerBtn = document.getElementById("registerBtn");
 
 function showError(input, message){
 
@@ -54,8 +52,7 @@ showSuccess(nameInput);
 
 /* Email */
 
-const emailRegex =
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 if(!emailRegex.test(emailInput.value)){
 
@@ -87,17 +84,21 @@ showSuccess(phoneInput);
 
 /* Password Match */
 
-if(passwordInput.value!==confirmPasswordInput.value){
+if (
+    passwordInput.value !==
+    confirmPasswordInput.value
+) {
 
-showError(confirmPasswordInput,
-"Passwords do not match");
+    showError(
+        confirmPasswordInput,
+        "Passwords do not match"
+    );
 
-valid=false;
+    valid = false;
 
-}else{
+} else {
 
-showSuccess(confirmPasswordInput);
-
+    showSuccess(confirmPasswordInput);
 }
 
 registerBtn.disabled=!valid;
@@ -114,54 +115,136 @@ registerBtn.disabled=!valid;
 });
 
 /* form submit */
-form.addEventListener("submit",(e)=>{
+/* form submit */
+form.addEventListener("submit", async (e) => {
 
-e.preventDefault();
+    e.preventDefault();
 
-validateForm();
+    validateForm();
 
-if(registerBtn.disabled){
+    if (registerBtn.disabled) {
 
-showToast("Please fix validation errors","error");
+        showToast(
+            "Please fix validation errors",
+            "error"
+        );
 
-return;
+        return;
+    }
 
-}
+    registerBtn.disabled = true;
 
-registerBtn.disabled=true;
+    const text = document.querySelector(".btn-text");
+    const spinner = document.querySelector(".spinner");
 
-const text=document.querySelector(".btn-text");
+    text.style.display = "none";
+    spinner.style.display = "block";
 
-const spinner=document.querySelector(".spinner");
 
-text.style.display="none";
+    try {
 
-spinner.style.display="block";
+        const response = await fetch(
+            "http://localhost:5000/api/v1/auth/register",
+            {
+                method: "POST",
 
-/* Fake API */
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-setTimeout(()=>{
+                credentials: "include",
 
-spinner.style.display="none";
+                body: JSON.stringify({
 
-text.style.display="inline";
+                    fullName: nameInput.value.trim(),
 
-showToast(
+                    email: emailInput.value.trim(),
 
-"Registration Successful 🎉",
+                    password: passwordInput.value
 
-"success"
+                })
+            }
+        );
 
-);
 
-registerBtn.disabled=false;
+        const data = await response.json();
 
-/* Backend connect hone ke baad
+        console.log("Register Response:", data);
 
-window.location.href="login.html";
 
-*/
+        if (!response.ok) {
 
-},2000);
+            showToast(
+                data.message || "Registration failed",
+                "error"
+            );
+
+            return;
+        }
+
+
+        // Registration successful
+
+        showToast(
+            "Registration Successful 🎉",
+            "success"
+        );
+
+
+        setTimeout(() => {
+
+            window.location.href = "login.html";
+
+        }, 1200);
+
+
+    } catch (error) {
+
+        console.error(
+            "Registration Error:",
+            error
+        );
+
+        showToast(
+            "Unable to connect to server",
+            "error"
+        );
+
+
+    } finally {
+
+        spinner.style.display = "none";
+
+        text.style.display = "inline";
+
+        registerBtn.disabled = false;
+
+    }
 
 });
+/* Fake API */
+
+// setTimeout(()=>{
+
+// spinner.style.display="none";
+
+// text.style.display="inline";
+
+// showToast(
+
+// "Registration Successful 🎉",
+
+// "success"
+
+// );
+
+// registerBtn.disabled=false;
+
+// /* Backend connect hone ke baad
+
+// window.location.href="login.html";
+
+// */
+
+// },2000);
+

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Xpenss Tracker - Smart Personal Expense Management Dashboard">
 
     <title>Dashboard | Xpenss Tracker</title>
 
@@ -13,8 +14,525 @@
 
     <!-- Global CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages/dashboard.css">
 </head>
 <body>
-    
+    <!--Dashboard-->
+    <div class="dashboard-app">
+
+        <!--Sidebar-->
+        <aside class="sidebar" id="sidebar">
+            <!--Logo-->
+            <div class="sidebar-logo">
+                <div class="logo-icon">
+                    ₹
+                </div>
+
+                <div class="logo-text">
+                    Xpenss
+                </div>
+            </div>
+
+            <!-- Navigation-->
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon">
+                         ▦
+                    </span>
+                    <span>
+                        Dashboard
+                    </span>
+                </a>
+
+                <a href="#" class="nav-item" data-page="expenses">
+                    <span class="nav-icon">
+                        ₹
+                    </span>
+                    <span>
+                        Expenses
+                    </span>
+                </a>
+
+                <a href="#" class="nav-item" data-page="income">
+                    <span class="nav-icon">
+                        ↗
+                    </span>
+                    <span>
+                        Income
+                    </span>
+                </a>
+
+                <a href="#" class="nav-item" data-page="analytics">
+                    <span class="nav-icon">
+                        ◒
+                    </span>
+                    <span>
+                        Analytics
+                    </span>
+                </a>
+
+                <a href="#" class="nav-item" data-page="budgets">
+                    <span class="nav-icon">
+                        ◎
+                    </span>
+                    <span>
+                        Budgets
+                    </span>
+                </a>
+
+                <a href="#" class="nav-item" data-page="transactions" >
+                    <span class="nav-icon">
+                        ≡
+                    </span>
+                    <span>
+                        Transactions
+                    </span>
+                </a>                
+            </nav>
+
+            <!--Sidebatr Bottom-->
+            <div class="sidebar-bottom">
+                <a href="#" class="nav-item" >
+                    <span class="nav-icon">
+                        ⚙
+                    </span>
+                    <span>
+                        Settings
+                    </span>
+                </a>
+
+                <button
+                    type="button" class="logout-btn" id="logoutBtn">
+                    <span class="nav-icon">
+                        ↪
+                    </span>
+                    <span>
+                        Logout
+                    </span>
+                </button>
+            </div>
+        </aside>
+
+        <!--Main-->
+        <main class="main-content">
+
+            <!--Header-->
+            <header class="top-header">
+                <!-- Mobile Menu -->
+                <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" >
+                    ☰
+                </button>
+
+                <!-- Search -->
+                <div class="search-box">
+                    <span class="search-icon">
+                        ⌕
+                    </span>
+                    <input type="search" id="dashboardSearch" placeholder="Search transactions...">
+                </div>
+
+                <!-- Header Right -->
+                <div class="header-actions">
+                    <!-- Notification -->
+                    <button type="button" class="header-icon-btn" id="notificationBtn" aria-label="Notifications" >
+                        ♢
+                    </button>
+                </div>
+
+                <!-- User -->
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <span id="userInitial">
+                                A
+                            </span>
+                        </div>
+
+                        <div class="user-details">
+                            <strong id="userName">
+                                Loading...
+                            </strong>
+
+                            <span id="userEmail">
+                                Loading...
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!--Dashboard Content-->
+            <section class="dashboard-content">
+                <!--Welcome-->
+                <div class="welcome-section">
+                    <div>
+                        <p class="welcome-label">
+                            Welcome back 👋
+                        </p>
+
+                        <h1>
+                            Good to see you,
+                            <span id="welcomeName">
+                                User
+                            </span>
+                        </h1>
+
+                        <p class="welcome-subtitle">
+                            Here's what's happening with your money today.
+                        </p>
+                    </div>
+
+                    <!--Add Expenses-->
+                    <button type="button" class="primary-btn" id="addExpenseBtn">
+                        <span>
+                            +
+                        </span>
+                        Add Expense
+                    </button>
+                </div>
+
+                <!--Summary Card-->
+                <div class="summary-grid">
+                    <!--Balance-->
+                    <article class="summary-card">
+                        <div class="summary-card-top">
+
+                            <div class="summary-icon balance-icon">
+                                ₹
+                            </div>
+
+                            <span class="summary-label">
+                                Total Balance
+                            </span>
+
+                        </div>
+
+                        <h2 id="totalBalance">
+                            ₹0
+                        </h2>
+
+                        <p class="summary-change positive">
+                            +0% this month
+                        </p>
+                    </article>
+
+                    <!--Income-->
+                    <article class="summary-card">
+                        <div class="summary-card-top">
+
+                            <div class="summary-icon income-icon">
+                                ↗
+                            </div>
+
+                            <span class="summary-label">
+                                Total Income
+                            </span>
+
+                        </div>
+
+                        <h2 id="totalIncome">
+                            ₹0
+                        </h2>
+
+                        <p class="summary-change positive">
+                            +0% this month
+                        </p>
+                    </article>
+
+                    <!--Expense-->
+                    <article class="summary-card">
+                         <div class="summary-card-top">
+
+                            <div class="summary-icon expense-icon">
+                                ↘
+                            </div>
+
+                            <span class="summary-label">
+                                Total Expenses
+                            </span>
+
+                        </div>
+
+                        <h2 id="totalExpense">
+                            ₹0
+                        </h2>
+
+                        <p class="summary-change negative">
+                            0% this month
+                        </p>
+                    </article>
+
+                    <!--Saving-->
+                    <article class="summary-card">
+                        <div class="summary-card-top">
+
+                            <div class="summary-icon savings-icon">
+                                ◉
+                            </div>
+
+                            <span class="summary-label">
+                                Savings
+                            </span>
+
+                        </div>
+
+                        <h2 id="totalSavings">
+                            ₹0
+                        </h2>
+
+                        <p class="summary-change positive">
+                            0% this month
+                        </p>
+                    </article>
+                </div>
+
+                <!--Mian Dashboard-->
+                <div class="dashboard-grid">
+                    <!--Spending overview-->
+                    <section class="dashboard-card spending-card">
+                        <div class="card-header">
+                            <div>
+                                <h3>
+                                    Spending Overview
+                                </h3>
+
+                                <p>
+                                    Your spending activity
+                                </p>
+                            </div>
+
+                            <select id="spendingPeriod" class="period-select" title="Select spending period">
+                                <option value="7">
+                                    Last 7 Days
+                                </option>
+
+                                <option value="30" selected>
+                                    This Month
+                                </option>
+
+                                <option value="90">
+                                    Last 3 Months
+                                </option>
+
+                                <option value="365">
+                                    This Year
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- Chart Placeholder -->
+                        <div class="chart-container" id="spendingChart" >
+                            <div class="chart-placeholder">
+                                <div class="chart-placeholder-icon">
+                                    ◒
+                                </div>
+
+                                <p>
+                                    Spending analytics will appear here
+                                </p>
+
+                                <span>
+                                    Add transactions to see your spending trends.
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!--Expense Categories-->
+                    <section class="dashboard-card category-card">
+                        <div class="card-header">
+                            <div>
+                                <h3>
+                                    Expense Categories
+                                </h3>
+
+                                <p>
+                                    Where your money goes
+                                </p>
+                            </div>
+
+                            <a href="#" class="view-link">
+                                View All
+                            </a>
+                        </div>
+
+                        <div class="category-list" id="categorylist">
+                            <!--Category Item-->
+                            <div class="category-item">
+                                <div class="category-left">
+                                    <div class="category-icon">
+                                         🍔
+                                    </div>
+
+                                    <div>
+                                        <strong>Food</strong>
+                                        <span>0 transacction</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <strong>₹0</strong>
+                        </div>
+
+                        <div class="category-item">
+                            <div class="category-left">
+                                <div class="category-icon">
+                                     🚗
+                                </div>
+
+                                <div>
+                                    <strong>Transport</strong>
+                                    <span>0 transactions</span>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-left">
+                                    <div class="category-icon">
+                                        🛍️
+                                    </div>
+
+                                    <div>
+                                        <strong>
+                                            Shopping
+                                        </strong>
+
+                                        <span>
+                                            0 transactions
+                                        </span>
+                                    </div>
+                                </div>
+                                <strong>
+                                    ₹0
+                                </strong>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-left">
+                                    <div class="category-icon">
+                                        📄
+                                    </div>
+
+                                    <div>
+                                        <strong>Bills</strong>
+                                        <span> 0 transactions</span>
+                                    </div>
+                                </div>
+                                <strong> ₹0</strong>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!--  RECENT TRANSACTIONS -->
+                <section class="dashboard-card transactions-card">
+                    <div class="card-header">
+                        <div>
+                            <h3>
+                                Recent Transactions
+                            </h3>
+
+                            <p>
+                                Your latest income and expenses
+                            </p>
+                        </div>
+
+                         <a href="#" class="view-link" >
+                            View All
+                        </a>
+                    </div>
+
+                    <div class="transaction-table-wrapper">
+                        <table class="transaction-table">
+                            <thead>
+                                <tr>
+                                    <th>Transaction</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                    <th>Payment</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="transactionList">
+                                <!--Empty State-->
+                                <tr>
+                                    <td colspan="5" class="empty-state">
+                                        <div class="empty-state-content">
+                                            <div class="empty-icon">₹</div>
+                                            <h4>No transactions yet</h4>
+                                            <p>Add your first transaction to start tracking your expenses.</p>
+
+                                            <button type="button" class="secondary-btn" id="emptyExpenseBtn">
+                                                Add Transaction
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Quick Actions-->
+                 <section class="quick-actions-section">
+                    <h3>Quick Actions</h3>
+
+                    <div class="quick-actions-grid">
+                        <button type="button" class="quick-action" ud="quickExpenseBtn">
+                            <span class="quick=action-icon">
+                                +
+                            </span>
+
+                            <div>
+                                <strong>Add Expense</strong>
+                                <span>Record a new expense</span>
+                            </div>
+                        </button>
+
+                        <button type="button" class="quick-action" id="quickIncomeBtn">
+                            <span class="quick-action-icon"> ↗</span>
+
+                            <div>
+                                <strong>Add Income</strong>
+                                <span>Record your income</span>
+                            </div>
+                        </button>
+
+                        <button type="button" class="quick-action" id="quickBudgetBtn">
+                            <span class="quick-action-icon">
+                                ◎
+                            </span>
+
+                            <div>
+                                <strong>Set Budget</strong>
+                                <span>Manage your budget</span>
+                            </div>
+                        </button>
+
+                        <button type="button" class="quick-action" id="quickAnalyticsBtn">
+                            <span class="quick-action-icon">
+                                ◒
+                            </span>
+                            <div>
+                                <strong>View Analytics</strong>
+                                <span>Analyze your spending</span>
+                            </div>
+                        </button>
+
+                    </div>
+                </section>
+            </section>
+
+            <!-- Footer-->
+            <footer class="dashboard-footer">
+                <p>
+                    © 2026 Xpenss Tracker. Manage your money smarter.
+                </p>
+            </footer>
+        </main>
+    </div>
+     
+    <script src="js/toast.js"></script>
+    <script src="js/dashboard.js"></script>
+
 </body>
 </html>

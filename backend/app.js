@@ -4,6 +4,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/authRoutes");
+const errorHandler = require("./middleware/errorMiddleware");
 
 const app = express();
 
@@ -36,5 +37,9 @@ app.get("/", (req, res) => {
         message: "XPENSS Tracker API is running 🚀"
     });
 });
+
+// Centralized Error Handler
+app.use(errorHandler);
+
 
 module.exports = app;

@@ -47,6 +47,16 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+
+    resetPasswordToken: {
+      type: String,
+      default: undefined,
+    },
+    
+    resetPasswordExpire: {
+      type: Date,
+      default: undefined,
+    },
   },
   {
     timestamps: true,
@@ -58,6 +68,12 @@ userSchema.pre("save", async function () {
     if (!this.isModified("password")) {
         return;
     }
+
+    this.password = await bcrypt.hash(     // new add in line 72
+      this.password, 
+      10
+    );
+    next();
 
     const salt = await bcrypt.genSalt(10);
 

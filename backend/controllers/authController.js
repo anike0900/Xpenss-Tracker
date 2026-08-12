@@ -1,86 +1,77 @@
 const User = require("../models/User");
+const crypto = require("crypto");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+
+// ==========================================================
+// REGISTER USER
+// ==========================================================
+
 exports.registerUser = async (req, res) => {
 
-    try {
-         
-        console.log(req.body);
-        const { fullName, email, password } = req.body;
+    const { fullName, email, password } = req.body;
 
-        // Basic validation
-        if (!fullName || !email || !password) {
-            return res.status(400).json({
-                success: false,
-                message: "All fields are required"
-            });
-        }
+    const existingUser = await User.findOne({ email });
 
-        // Check existing user
-        const existingUser = await User.findOne({ email });
-
-        if (existingUser) {
-            return res.status(409).json({
-                success: false,
-                message: "Email already registered"
-            });
-        }
-
-        // Create user
-        const user = await User.create({
-            fullName,
-            email,
-            password
+    if (existingUser) {
+        return res.status(409).json({
+            success: false,
+            message: "Email already registered"
         });
+    }
 
-        // Generate JWT
-        const token = user.generateToken();
-
-        res.status(201).json({
-            success: true,
-            message: "Registration successful",
-            token,
-            user: {
-                id: user._id,
-                fullName: user.fullName,
-                email: user.email,
-                currency: user.currency,
-                theme: user.theme
-            }
-        });
-
-    // } catch (error) {
-
-    //     res.status(500).json({
-    //         success: false,
-    //         message: error.message
-    //     });
-
-    // }
-    } catch (error) {
-    console.error("🔥 Full Error:", error);
-
-    res.status(500).json({
-        success: false,
-        message: error.message
+    const user = await User.create({
+        fullName,
+        email,
+        password
     });
-}
 
+    const token = user.generateToken();
+
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production"
+            ? "none"
+            : "lax",
+        maxAge: 7 * 24 * 60 * 60 * 1000
+    });
+
+    res.status(201).json({
+        success: true,
+        message: "Registration successful",
+        user: {
+            id: user._id,
+            fullName: user.fullName,
+            email: user.email,
+            currency: user.currency,
+            theme: user.theme
+        }
+    });
 };
 
+
+// ==========================================================
+// LOGIN USER
+// ==========================================================
+
 exports.loginUser = async (req, res) => {
+
     try {
 
         const { email, password } = req.body;
 
-        // Validation
         if (!email || !password) {
             return res.status(400).json({
                 success: false,
-                message: "Email and Password are required"
+                message: "Email and password are required"
             });
         }
 
-        // Find User
-        const user = await User.findOne({ email }).select("+password");
+        const user = await User
+            .findOne({ email })
+            .select("+password");
 
         if (!user) {
             return res.status(401).json({
@@ -89,8 +80,8 @@ exports.loginUser = async (req, res) => {
             });
         }
 
-        // Compare Password
-        const isMatch = await user.comparePassword(password);
+        const isMatch =
+            await user.comparePassword(password);
 
         if (!isMatch) {
             return res.status(401).json({
@@ -99,13 +90,16 @@ exports.loginUser = async (req, res) => {
             });
         }
 
-        // Generate Token
         const token = user.generateToken();
 
         res.status(200).json({
+
             success: true,
-            message: "Login Successful",
+
+            message: "Login successful",
+
             token,
+
             user: {
                 id: user._id,
                 fullName: user.fullName,
@@ -113,11 +107,10 @@ exports.loginUser = async (req, res) => {
                 currency: user.currency,
                 theme: user.theme
             }
+
         });
 
     } catch (error) {
-
-        console.error(error);
 
         res.status(500).json({
             success: false,
@@ -127,12 +120,19 @@ exports.loginUser = async (req, res) => {
     }
 };
 
+
+// ==========================================================
+// GET CURRENT USER
+// ==========================================================
+
 exports.getCurrentUser = async (req, res) => {
 
     try {
 
         res.status(200).json({
+
             success: true,
+
             user: {
                 id: req.user._id,
                 fullName: req.user.fullName,
@@ -140,8 +140,10 @@ exports.getCurrentUser = async (req, res) => {
                 profileImage: req.user.profileImage,
                 currency: req.user.currency,
                 theme: req.user.theme,
-                isEmailVerified: req.user.isEmailVerified
+                isEmailVerified:
+                    req.user.isEmailVerified
             }
+
         });
 
     } catch (error) {
@@ -152,17 +154,279 @@ exports.getCurrentUser = async (req, res) => {
         });
 
     }
-
 };
+
+
+// ==========================================================
+// LOGOUT USER
+// ==========================================================
 
 exports.logoutUser = async (req, res) => {
 
-    res.status(200).json({
+    try {
 
-        success: true,
+        res.clearCookie("token", {
 
-        message: "Logout API Working"
+            httpOnly: true,
 
-    });
+            secure:
+                process.env.NODE_ENV === "production",
+
+            sameSite:
+                process.env.NODE_ENV === "production"
+                    ? "none"
+                    : "lax"
+
+        });
+
+        res.status(200).json({
+            success: true,
+            message: "Logout Successful"
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+};
+
+
+// ==========================================================
+// FORGOT PASSWORD
+// ==========================================================
+
+exports.forgotPassword = async (req, res, next) => {
+
+    try {
+
+        const { email } = req.body;
+
+
+        // ------------------------------------------
+        // Validate email
+        // ------------------------------------------
+
+        if (!email) {
+
+            return res.status(400).json({
+                success: false,
+                message: "Email is required"
+            });
+
+        }
+
+
+        // ------------------------------------------
+        // Find user
+        // ------------------------------------------
+
+        const user = await User.findOne({
+            email: email.toLowerCase().trim()
+        });
+
+
+        if (!user) {
+
+            return res.status(200).json({
+                success: true,
+                message:
+                    "If an account exists with this email, a password reset link has been generated."
+            });
+
+        }
+
+
+        // ------------------------------------------
+        // Generate reset token
+        // ------------------------------------------
+
+        const resetToken =
+            crypto.randomBytes(32).toString("hex");
+
+
+        // ------------------------------------------
+        // Hash token
+        // ------------------------------------------
+
+        const hashedToken =
+            crypto
+                .createHash("sha256")
+                .update(resetToken)
+                .digest("hex");
+
+
+        // ------------------------------------------
+        // Save token + expiry
+        // ------------------------------------------
+
+        user.resetPasswordToken =
+            hashedToken;
+
+        user.resetPasswordExpire =
+            Date.now() + 15 * 60 * 1000;
+
+
+        await user.save({
+            validateBeforeSave: false
+        });
+
+
+        // ------------------------------------------
+        // Development reset URL
+        // ------------------------------------------
+
+        const resetUrl =
+            `http://127.0.0.1:5500/frontend/reset-password.html?token=${resetToken}`;
+
+
+        // ------------------------------------------
+        // Response
+        // ------------------------------------------
+
+        return res.status(200).json({
+
+            success: true,
+
+            message:
+                "Password reset link generated successfully",
+
+            resetUrl
+
+        });
+
+    } catch (error) {
+
+        next(error);
+
+    }
+
+};
+
+// ==========================================================
+// RESET PASSWORD
+// ==========================================================
+
+exports.resetPassword = async (req, res, next) => {
+
+    try {
+
+        const { token } = req.params;
+
+        const { password } = req.body;
+
+
+        // ==========================================
+        // Token Check
+        // ==========================================
+
+        if (!token) {
+
+            return res.status(400).json({
+                success: false,
+                message: "Reset token is required"
+            });
+
+        }
+
+
+        // ==========================================
+        // Password Check
+        // ==========================================
+
+        if (!password) {
+
+            return res.status(400).json({
+                success: false,
+                message: "New password is required"
+            });
+
+        }
+
+
+        // ==========================================
+        // Hash Incoming Token
+        // ==========================================
+
+        const hashedToken =
+            crypto
+                .createHash("sha256")
+                .update(token)
+                .digest("hex");
+
+
+        // ==========================================
+        // Find User
+        // ==========================================
+
+        const user = await User.findOne({
+
+            resetPasswordToken: hashedToken,
+
+            resetPasswordExpire: {
+                $gt: Date.now()
+            }
+
+        });
+
+
+        // ==========================================
+        // Invalid / Expired Token
+        // ==========================================
+
+        if (!user) {
+
+            return res.status(400).json({
+
+                success: false,
+
+                message:
+                    "Invalid or expired password reset token"
+
+            });
+
+        }
+
+
+        // ==========================================
+        // Update Password
+        // ==========================================
+
+        user.password = password;
+
+
+        // ==========================================
+        // Remove Reset Token
+        // ==========================================
+
+        user.resetPasswordToken = undefined;
+
+        user.resetPasswordExpire = undefined;
+
+
+        await user.save();
+
+
+        // ==========================================
+        // Success
+        // ==========================================
+
+        return res.status(200).json({
+
+            success: true,
+
+            message:
+                "Password reset successful"
+
+        });
+
+    } catch (error) {
+
+        next(error);
+
+    }
 
 };
