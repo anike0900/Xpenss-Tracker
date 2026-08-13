@@ -161,3 +161,127 @@ exports.deleteIncome = async (req, res) => {
     });
   }
 };
+
+// ==========================================
+// INCOME STATISTICS
+// ==========================================
+
+exports.getIncomeStats = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    // Total Income
+    const totalIncomeResult = await Income.aggregate([
+      {
+        $match: {
+          user: userId,
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          total: {
+            $sum: "$amount",
+          },
+        },
+      },
+    ]);
+
+    const totalIncome =
+      totalIncomeResult.length > 0
+        ? totalIncomeResult[0].total
+        : 0;
+
+    // Monthly Income
+    const startOfMonth = new Date(
+      new Date().getFullYear(),
+      new Date().getMonth(),
+      1
+    );
+
+    const monthlyIncomeResult =
+      await Income.aggregate([
+        {
+          $match: {
+            user: userId,
+            date: {
+              $gte: startOfMonth,
+            },
+          },
+        },
+        {
+          $group: {
+            _id: null,
+            total: {
+              $sum: "$amount",
+            },
+          },
+        },
+      ]);
+
+    const monthlyIncome =
+      monthlyIncomeResult.length > 0
+        ? monthlyIncomeResult[0].total
+        : 0;
+
+    // Highest Income
+    const highestIncome =
+      await Income.findOne({
+        user: userId,
+      }).sort({
+        amount: -1,
+      });
+
+    // Recent Income
+    const recentIncome =
+      await Income.find({
+        user: userId,
+      })
+        .sort({
+          createdAt: -1,
+        })
+        .limit(5);
+
+    // Source Breakdown
+    const sourceBreakdown =
+      await Income.aggregate([
+        {
+          $match: {
+            user: userId,
+          },
+        },
+        {
+          $group: {
+            _id: "$source",
+            total: {
+              $sum: "$amount",
+            },
+          },
+        },
+        {
+          $sort: {
+            total: -1,
+          },
+        },
+      ]);
+
+    res.status(200).json({
+      success: true,
+
+      totalIncome,
+
+      monthlyIncome,
+
+      highestIncome,
+
+      recentIncome,
+
+      sourceBreakdown,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

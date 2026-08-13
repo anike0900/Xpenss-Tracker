@@ -11,6 +11,7 @@ const {
    getSingleIncome,
    updateIncome,
    deleteIncome,
+   getIncomeStats,
 } = require("../controllers/incomeController");
 
 const validateIncome =
@@ -21,6 +22,12 @@ router.post(
   protect,
   validateIncome,
   addIncome
+);
+
+router.get(
+  "/stats",
+  protect,
+  getIncomeStats
 );
 
 router.get(
