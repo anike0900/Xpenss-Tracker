@@ -361,3 +361,88 @@ exports.searchExpenses = async (req, res) => {
     });
   }
 };
+
+// ==========================================
+// EXPENSE STATISTICS
+// ==========================================
+
+exports.getExpenseStats = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    // Total Expenses
+    const totalExpenses = await Expense.aggregate([
+      {
+        $match: {
+          user: userId,
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          total: {
+            $sum: "$amount",
+          },
+        },
+      },
+    ]);
+
+    // Category Wise Expenses
+    const categoryStats = await Expense.aggregate([
+      {
+        $match: {
+          user: userId,
+        },
+      },
+      {
+        $group: {
+          _id: "$category",
+          total: {
+            $sum: "$amount",
+          },
+        },
+      },
+      {
+        $sort: {
+          total: -1,
+        },
+      },
+    ]);
+
+    // Highest Expense
+    const highestExpense = await Expense.findOne({
+      user: userId,
+    }).sort({
+      amount: -1,
+    });
+
+    // Recent Expenses
+    const recentExpenses = await Expense.find({
+      user: userId,
+    })
+      .sort({
+        createdAt: -1,
+      })
+      .limit(5);
+
+    res.status(200).json({
+      success: true,
+
+      totalExpenses:
+        totalExpenses.length > 0
+          ? totalExpenses[0].total
+          : 0,
+
+      categoryStats,
+
+      highestExpense,
+
+      recentExpenses,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

@@ -11,6 +11,7 @@ const {
     deleteExpense,
     filterExpenses,
     searchExpenses,
+    getExpenseStats,
 } = require("../controllers/expenseController");
 
 // Middleware
@@ -53,6 +54,12 @@ router.get(
   "/search",
   protect,
   searchExpenses
+);
+
+router.get(
+  "/stats",
+  protect,
+  getExpenseStats
 );
 
 router.put(
