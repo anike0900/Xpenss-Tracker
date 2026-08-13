@@ -9,6 +9,7 @@ const {
   addIncome,
    getAllIncome,
    getSingleIncome,
+   updateIncome,
 } = require("../controllers/incomeController");
 
 const validateIncome =
@@ -32,6 +33,13 @@ router.get(
   "/:id",
   protect,
   getSingleIncome
+);
+
+router.put(
+  "/:id",
+  protect,
+  validateIncome,
+  updateIncome
 );
 
 module.exports = router;

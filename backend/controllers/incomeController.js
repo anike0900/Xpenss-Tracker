@@ -88,3 +88,44 @@ exports.getSingleIncome = async (req, res) => {
     });
   }
 };
+
+// ==========================================
+// UPDATE INCOME
+// ==========================================
+
+exports.updateIncome = async (req, res) => {
+  try {
+    const income = await Income.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+
+    if (!income) {
+      return res.status(404).json({
+        success: false,
+        message: "Income not found",
+      });
+    }
+
+    const updatedIncome =
+      await Income.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+
+    res.status(200).json({
+      success: true,
+      message: "Income updated successfully",
+      income: updatedIncome,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
