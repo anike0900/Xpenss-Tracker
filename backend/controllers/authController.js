@@ -8,47 +8,42 @@ const jwt = require("jsonwebtoken");
 // REGISTER USER
 // ==========================================================
 
-exports.registerUser = async (req, res) => {
-
+exports.registerUser = async (req, res, next) => {
+  try {
     const { fullName, email, password } = req.body;
+
+    console.log(req.body);
 
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-        return res.status(409).json({
-            success: false,
-            message: "Email already registered"
-        });
+      return res.status(409).json({
+        success: false,
+        message: "Email already registered"
+      });
     }
 
     const user = await User.create({
-        fullName,
-        email,
-        password
+      fullName,
+      email,
+      password
     });
 
     const token = user.generateToken();
 
-    res.cookie("token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production"
-            ? "none"
-            : "lax",
-        maxAge: 7 * 24 * 60 * 60 * 1000
+    res.status(201).json({
+      success: true,
+      message: "Registration successful"
     });
 
-    res.status(201).json({
-        success: true,
-        message: "Registration successful",
-        user: {
-            id: user._id,
-            fullName: user.fullName,
-            email: user.email,
-            currency: user.currency,
-            theme: user.theme
-        }
+  } catch (error) {
+    console.log("REGISTER ERROR =>", error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message
     });
+  }
 };
 
 

@@ -69,11 +69,11 @@ userSchema.pre("save", async function () {
         return;
     }
 
-    this.password = await bcrypt.hash(     // new add in line 72
-      this.password, 
-      10
-    );
-    next();
+    // this.password = await bcrypt.hash(     // new add in line 72
+    //   this.password, 
+    //   10
+    // );
+    // next();
 
     const salt = await bcrypt.genSalt(10);
 
