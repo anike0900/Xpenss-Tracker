@@ -265,3 +265,99 @@ exports.deleteExpense = async (req, res) => {
     }
 
 };
+
+// Filter Expenses
+exports.filterExpenses = async (req, res, next) => {
+  try {
+    const { category, minAmount, maxAmount, startDate, endDate } =
+      req.query;
+
+    const filter = {
+      user: req.user._id,
+    };
+
+    // Category Filter
+    if (category) {
+      filter.category = category;
+    }
+
+    // Amount Filter
+    if (minAmount || maxAmount) {
+      filter.amount = {};
+
+      if (minAmount) {
+        filter.amount.$gte = Number(minAmount);
+      }
+
+      if (maxAmount) {
+        filter.amount.$lte = Number(maxAmount);
+      }
+    }
+
+    // Date Filter
+    if (startDate || endDate) {
+      filter.date = {};
+
+      if (startDate) {
+        filter.date.$gte = new Date(startDate);
+      }
+
+      if (endDate) {
+        filter.date.$lte = new Date(endDate);
+      }
+    }
+
+    const expenses = await Expense.find(filter).sort({
+      date: -1,
+    });
+
+    res.status(200).json({
+      success: true,
+      count: expenses.length,
+      data: expenses,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// ==========================================
+// SEARCH EXPENSES
+// ==========================================
+
+exports.searchExpenses = async (req, res) => {
+  try {
+    const { keyword } = req.query;
+
+    const expenses = await Expense.find({
+      user: req.user._id,
+      $or: [
+        {
+          title: {
+            $regex: keyword,
+            $options: "i",
+          },
+        },
+        {
+          note: {
+            $regex: keyword,
+            $options: "i",
+          },
+        },
+      ],
+    }).sort({
+      date: -1,
+    });
+
+    res.status(200).json({
+      success: true,
+      count: expenses.length,
+      data: expenses,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

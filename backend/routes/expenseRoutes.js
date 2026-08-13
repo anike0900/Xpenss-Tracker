@@ -8,7 +8,9 @@ const {
     getAllExpenses,
     getSingleExpense,
     updateExpense,
-    deleteExpense
+    deleteExpense,
+    filterExpenses,
+    searchExpenses,
 } = require("../controllers/expenseController");
 
 // Middleware
@@ -36,9 +38,21 @@ router.get(
 );
 
 router.get(
-    "/",
+    "/:id",
     protect,
     getSingleExpense
+);
+
+router.get(
+  "/filter",
+  protect,
+  filterExpenses
+);
+
+router.get(
+  "/search",
+  protect,
+  searchExpenses
 );
 
 router.put(
