@@ -309,3 +309,54 @@ exports.getMonthlyAnalytics = async (req, res) => {
     });
   }
 };
+
+// ==========================================
+// CATEGORY WISE EXPENSE ANALYTICS
+// ==========================================
+
+exports.getCategoryAnalytics = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const categories = await Expense.aggregate([
+      {
+        $match: {
+          user: userId,
+        },
+      },
+      {
+        $group: {
+          _id: "$category",
+          total: {
+            $sum: "$amount",
+          },
+          transactions: {
+            $sum: 1,
+          },
+        },
+      },
+      {
+        $sort: {
+          total: -1,
+        },
+      },
+    ]);
+
+    const formattedCategories =
+      categories.map((item) => ({
+        category: item._id,
+        total: item.total,
+        transactions: item.transactions,
+      }));
+
+    res.status(200).json({
+      success: true,
+      categories: formattedCategories,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
