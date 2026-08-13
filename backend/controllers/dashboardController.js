@@ -1,3 +1,4 @@
+const { Parser } = require("json2csv");
 const Income = require("../models/Income");
 const Expense = require("../models/Expense");
 
@@ -430,6 +431,79 @@ exports.getRecentTransactions = async (req, res) => {
       count: recentTransactions.length,
       transactions: recentTransactions,
     });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// ==========================================
+// EXPORT TRANSACTIONS CSV
+// ==========================================
+
+exports.exportTransactions = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const incomes = await Income.find({
+      user: userId,
+    });
+
+    const expenses = await Expense.find({
+      user: userId,
+    });
+
+    const formattedIncome =
+      incomes.map((income) => ({
+        type: "Income",
+        title: income.source,
+        amount: income.amount,
+        date: income.date,
+        note: income.note,
+      }));
+
+    const formattedExpense =
+      expenses.map((expense) => ({
+        type: "Expense",
+        title: expense.title,
+        amount: expense.amount,
+        date: expense.date,
+        note: expense.note,
+      }));
+
+    const transactions = [
+      ...formattedIncome,
+      ...formattedExpense,
+    ];
+
+    const fields = [
+      "type",
+      "title",
+      "amount",
+      "date",
+      "note",
+    ];
+
+    const json2csv = new Parser({
+      fields,
+    });
+
+    const csv =
+      json2csv.parse(transactions);
+
+    res.header(
+      "Content-Type",
+      "text/csv"
+    );
+
+    res.attachment(
+      "transactions-report.csv"
+    );
+
+    return res.send(csv);
+
   } catch (error) {
     res.status(500).json({
       success: false,
