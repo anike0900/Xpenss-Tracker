@@ -129,3 +129,35 @@ exports.updateIncome = async (req, res) => {
     });
   }
 };
+
+// ==========================================
+// DELETE INCOME
+// ==========================================
+
+exports.deleteIncome = async (req, res) => {
+  try {
+    const income = await Income.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+
+    if (!income) {
+      return res.status(404).json({
+        success: false,
+        message: "Income not found",
+      });
+    }
+
+    await income.deleteOne();
+
+    res.status(200).json({
+      success: true,
+      message: "Income deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

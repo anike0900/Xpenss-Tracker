@@ -6,10 +6,11 @@ const protect =
   require("../middleware/authMiddleware");
 
 const {
-  addIncome,
+   addIncome,
    getAllIncome,
    getSingleIncome,
    updateIncome,
+   deleteIncome,
 } = require("../controllers/incomeController");
 
 const validateIncome =
@@ -40,6 +41,12 @@ router.put(
   protect,
   validateIncome,
   updateIncome
+);
+
+router.delete(
+  "/:id",
+  protect,
+  deleteIncome
 );
 
 module.exports = router;
