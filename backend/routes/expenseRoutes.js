@@ -7,7 +7,8 @@ const {
     addExpense,
     getAllExpenses,
     getSingleExpense,
-    updateExpense
+    updateExpense,
+    deleteExpense
 } = require("../controllers/expenseController");
 
 // Middleware
@@ -45,6 +46,12 @@ router.put(
     protect,
     validateExpense,
     updateExpense
-)
+);
+
+router.delete(
+    "/:id",
+    protect,
+    deleteExpense
+);
 
 module.exports = router;

@@ -213,3 +213,55 @@ exports.updateExpense = async (req, res) => {
     }
 
 };
+
+// ==========================================
+// DELETE EXPENSE
+// ==========================================
+
+exports.deleteExpense = async (req, res) => {
+
+    try {
+
+        const expense = await Expense.findOne({
+
+            _id: req.params.id,
+
+            user: req.user._id
+
+        });
+
+        if (!expense) {
+
+            return res.status(404).json({
+
+                success: false,
+
+                message: "Expense not found"
+
+            });
+
+        }
+
+        await expense.deleteOne();
+
+        res.status(200).json({
+
+            success: true,
+
+            message: "Expense deleted successfully"
+
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+
+            success: false,
+
+            message: error.message
+
+        });
+
+    }
+
+};
