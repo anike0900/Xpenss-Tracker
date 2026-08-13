@@ -7,6 +7,7 @@ const protect =
 
 const {
   addIncome,
+  getAllIncome,
 } = require("../controllers/incomeController");
 
 const validateIncome =
@@ -17,6 +18,12 @@ router.post(
   protect,
   validateIncome,
   addIncome
+);
+
+router.get(
+  "/",
+  protect,
+  getAllIncome
 );
 
 module.exports = router;

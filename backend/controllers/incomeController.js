@@ -33,3 +33,28 @@ exports.addIncome = async (req, res) => {
     });
   }
 };
+
+// ==========================================
+// GET ALL INCOME
+// ==========================================
+
+exports.getAllIncome = async (req, res) => {
+  try {
+    const incomes = await Income.find({
+      user: req.user._id,
+    }).sort({
+      date: -1,
+    });
+
+    res.status(200).json({
+      success: true,
+      count: incomes.length,
+      incomes,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
