@@ -1,3 +1,4 @@
+const Income = require("../models/Income");
 const Expense = require("../models/Expense");
 
 // ==========================================
@@ -121,6 +122,102 @@ exports.getDashboardSummary = async (req, res) => {
       highestExpense,
       recentExpenses,
       categoryStats,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// ==========================================
+// FINANCE SUMMARY
+// ==========================================
+
+exports.getFinanceSummary = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    // Total Income
+    const incomeResult = await Income.aggregate([
+      {
+        $match: {
+          user: userId,
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          total: {
+            $sum: "$amount",
+          },
+        },
+      },
+    ]);
+
+    // Total Expense
+    const expenseResult = await Expense.aggregate([
+      {
+        $match: {
+          user: userId,
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          total: {
+            $sum: "$amount",
+          },
+        },
+      },
+    ]);
+
+    const totalIncome =
+      incomeResult.length > 0
+        ? incomeResult[0].total
+        : 0;
+
+    const totalExpense =
+      expenseResult.length > 0
+        ? expenseResult[0].total
+        : 0;
+
+    // Balance
+    const balance =
+      totalIncome - totalExpense;
+
+    // Savings Rate
+    const savingsRate =
+      totalIncome > 0
+        ? ((balance / totalIncome) * 100).toFixed(2)
+        : 0;
+
+    // Total Transactions
+    const totalIncomeTransactions =
+      await Income.countDocuments({
+        user: userId,
+      });
+
+    const totalExpenseTransactions =
+      await Expense.countDocuments({
+        user: userId,
+      });
+
+    const totalTransactions =
+      totalIncomeTransactions +
+      totalExpenseTransactions;
+
+    res.status(200).json({
+      success: true,
+
+      summary: {
+        totalIncome,
+        totalExpense,
+        balance,
+        savingsRate,
+        totalTransactions,
+      },
     });
   } catch (error) {
     res.status(500).json({
