@@ -360,3 +360,80 @@ exports.getCategoryAnalytics = async (req, res) => {
     });
   }
 };
+
+// ==========================================
+// RECENT TRANSACTIONS
+// ==========================================
+
+exports.getRecentTransactions = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    // Recent Incomes
+    const incomes = await Income.find({
+      user: userId,
+    })
+      .sort({ createdAt: -1 })
+      .limit(10);
+
+    // Recent Expenses
+    const expenses = await Expense.find({
+      user: userId,
+    })
+      .sort({ createdAt: -1 })
+      .limit(10);
+
+    // Format Incomes
+    const formattedIncomes = incomes.map(
+      (income) => ({
+        _id: income._id,
+        type: "income",
+        title: income.source,
+        amount: income.amount,
+        date: income.date,
+        createdAt: income.createdAt,
+      })
+    );
+
+    // Format Expenses
+    const formattedExpenses = expenses.map(
+      (expense) => ({
+        _id: expense._id,
+        type: "expense",
+        title: expense.title,
+        amount: expense.amount,
+        category: expense.category,
+        date: expense.date,
+        createdAt: expense.createdAt,
+      })
+    );
+
+    // Merge
+    const transactions = [
+      ...formattedIncomes,
+      ...formattedExpenses,
+    ];
+
+    // Sort Latest First
+    transactions.sort(
+      (a, b) =>
+        new Date(b.createdAt) -
+        new Date(a.createdAt)
+    );
+
+    // Top 10 Latest
+    const recentTransactions =
+      transactions.slice(0, 10);
+
+    res.status(200).json({
+      success: true,
+      count: recentTransactions.length,
+      transactions: recentTransactions,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

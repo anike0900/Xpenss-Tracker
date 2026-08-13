@@ -9,6 +9,7 @@ const {
   getFinanceSummary,
   getMonthlyAnalytics,
   getCategoryAnalytics,
+  getRecentTransactions,
 } = require("../controllers/dashboardController");
 
 router.get(
@@ -33,6 +34,12 @@ router.get(
   "/category-analytics",
   protect,
   getCategoryAnalytics
+);
+
+router.get(
+  "/recent-transactions",
+  protect,
+  getRecentTransactions
 );
 
 module.exports = router;
