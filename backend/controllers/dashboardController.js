@@ -226,3 +226,86 @@ exports.getFinanceSummary = async (req, res) => {
     });
   }
 };
+
+// ==========================================
+// MONTHLY ANALYTICS
+// ==========================================
+
+exports.getMonthlyAnalytics = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    // Monthly Income
+    const incomeAnalytics =
+      await Income.aggregate([
+        {
+          $match: {
+            user: userId,
+          },
+        },
+        {
+          $group: {
+            _id: {
+              year: {
+                $year: "$date",
+              },
+              month: {
+                $month: "$date",
+              },
+            },
+            total: {
+              $sum: "$amount",
+            },
+          },
+        },
+        {
+          $sort: {
+            "_id.year": 1,
+            "_id.month": 1,
+          },
+        },
+      ]);
+
+    // Monthly Expense
+    const expenseAnalytics =
+      await Expense.aggregate([
+        {
+          $match: {
+            user: userId,
+          },
+        },
+        {
+          $group: {
+            _id: {
+              year: {
+                $year: "$date",
+              },
+              month: {
+                $month: "$date",
+              },
+            },
+            total: {
+              $sum: "$amount",
+            },
+          },
+        },
+        {
+          $sort: {
+            "_id.year": 1,
+            "_id.month": 1,
+          },
+        },
+      ]);
+
+    res.status(200).json({
+      success: true,
+      incomeAnalytics: formattedIncome,
+      expenseAnalytics: formattedExpense,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
