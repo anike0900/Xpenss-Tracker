@@ -58,3 +58,33 @@ exports.getAllIncome = async (req, res) => {
     });
   }
 };
+
+// ==========================================
+// GET SINGLE INCOME
+// ==========================================
+
+exports.getSingleIncome = async (req, res) => {
+  try {
+    const income = await Income.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+
+    if (!income) {
+      return res.status(404).json({
+        success: false,
+        message: "Income not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      income,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
