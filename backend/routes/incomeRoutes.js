@@ -9,9 +9,13 @@ const {
   addIncome,
 } = require("../controllers/incomeController");
 
+const validateIncome =
+require("../middleware/validateIncomeMiddleware");
+
 router.post(
   "/",
   protect,
+  validateIncome,
   addIncome
 );
 
