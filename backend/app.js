@@ -7,6 +7,7 @@ const authRoutes = require("./routes/authRoutes");
 const errorHandler = require("./middleware/errorMiddleware");
 const expenseRoutes = require("./routes/expenseRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
+const incomeRoutes = require("./routes/incomeRoutes");
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(cookieParser());
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/expenses", expenseRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
+app.use("/api/v1/income", incomeRoutes);
 // Health Check
 app.get("/", (req, res) => {
     res.status(200).json({
