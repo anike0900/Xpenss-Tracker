@@ -794,6 +794,92 @@ async function getRecentTransactions() {
 
 }
 
+// Monthly Expenses chart
+async function loadMonthlyChart() {
+
+    try {
+
+        const token =
+            localStorage.getItem("token");
+
+        const response = await fetch(
+            "http://localhost:5000/api/v1/analytics/monthly",
+            {
+                headers: {
+                    Authorization:
+                        `Bearer ${token}`
+                }
+            }
+        );
+
+        const data =
+            await response.json();
+
+        const labels =
+            data.analytics.map(item =>
+                `${item._id.month}/${item._id.year}`
+            );
+
+        const amounts =
+            data.analytics.map(item =>
+                item.totalExpense
+            );
+
+        const ctx =
+            document
+                .getElementById("monthlyChart")
+                .getContext("2d");
+
+        new Chart(ctx, {
+
+            type: "bar",
+
+            data: {
+
+                labels,
+
+                datasets: [
+
+                    {
+                        label: "Expenses",
+
+                        data: amounts,
+
+                        borderWidth: 1
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
 getCurrentUser();
 getDashboardSummary();
 getRecentTransactions();
+
+loadMonthlyChart();

@@ -902,10 +902,10 @@ a {
 ========================================================= */
 
 .chart-container {
-
-    height: 315px;
-
-    padding: 20px 22px;
+   background:#fff;
+    padding:20px;
+    border-radius:12px;
+    margin-top:20px;
 }
 
 .chart-placeholder {
