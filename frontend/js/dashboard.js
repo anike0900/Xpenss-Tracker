@@ -878,8 +878,78 @@ async function loadMonthlyChart() {
 
 }
 
+//load Category Chart
+async function loadCategoryChart() {
+
+    try {
+
+        const token =
+            localStorage.getItem("token");
+
+        const response = await fetch(
+            "http://localhost:5000/api/v1/analytics/category-wise",
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        const data = await response.json();
+
+        const labels =
+            data.analytics.map(
+                item => item._id
+            );
+
+        const amounts =
+            data.analytics.map(
+                item => item.totalAmount
+            );
+
+        const ctx =
+            document
+                .getElementById("categoryChart")
+                .getContext("2d");
+
+        new Chart(ctx, {
+
+            type: "pie",
+
+            data: {
+
+                labels,
+
+                datasets: [
+                    {
+                        data: amounts
+                    }
+                ]
+
+            },
+
+            options: {
+
+                responsive: true
+
+            }
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Category Chart Error:",
+            error
+        );
+
+    }
+
+}
+
 getCurrentUser();
 getDashboardSummary();
 getRecentTransactions();
 
 loadMonthlyChart();
+loadCategoryChart();
