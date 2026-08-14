@@ -9,16 +9,58 @@ exports.getMonthlyAnalytics = async (req, res) => {
 
     try {
 
+        const analytics = await Expense.aggregate([
+
+            {
+                $match: {
+                    user: req.user._id
+                }
+            },
+
+            {
+                $group: {
+
+                    _id: {
+                        month: {
+                            $month: "$date"
+                        },
+                        year: {
+                            $year: "$date"
+                        }
+                    },
+
+                    totalExpense: {
+                        $sum: "$amount"
+                    }
+
+                }
+            },
+
+            {
+                $sort: {
+                    "_id.year": -1,
+                    "_id.month": -1
+                }
+            }
+
+        ]);
+
         res.status(200).json({
+
             success: true,
-            message: "Monthly analytics API working"
+
+            analytics
+
         });
 
     } catch (error) {
 
         res.status(500).json({
+
             success: false,
+
             message: error.message
+
         });
 
     }
