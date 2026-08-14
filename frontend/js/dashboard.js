@@ -726,5 +726,74 @@ async function getDashboardSummary() {
 
 }
 
+//Recent Transaction
+async function getRecentTransactions() {
+
+    try {
+
+        const token =
+            localStorage.getItem("token");
+
+        const response = await fetch(
+            "http://localhost:5000/api/v1/analytics/recent-transactions",
+            {
+                headers: {
+                    Authorization:
+                        `Bearer ${token}`
+                }
+            }
+        );
+
+        const data =
+            await response.json();
+
+        console.log(data);
+
+        const transactionList =
+            document.getElementById(
+                "transactionList"
+            );
+
+        transactionList.innerHTML = "";
+
+        data.transactions.forEach(
+            (transaction) => {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+                item.classList.add(
+                    "transaction-item"
+                );
+
+                item.innerHTML = `
+                    <p>${transaction.title}</p>
+
+                    <strong>
+                        ${transaction.type === "income"
+                            ? "+"
+                            : "-"}
+                        ₹${transaction.amount}
+                    </strong>
+                `;
+
+                transactionList.appendChild(
+                    item
+                );
+
+            }
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
 getCurrentUser();
 getDashboardSummary();
+getRecentTransactions();

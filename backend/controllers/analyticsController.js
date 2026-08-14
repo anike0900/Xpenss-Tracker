@@ -71,20 +71,62 @@ exports.getMonthlyAnalytics = async (req, res) => {
 // CATEGORY WISE ANALYTICS
 // ==========================================
 
+// ==========================================
+// CATEGORY WISE ANALYTICS
+// ==========================================
+
 exports.getCategoryAnalytics = async (req, res) => {
 
     try {
 
+        const analytics = await Expense.aggregate([
+
+            {
+                $match: {
+                    user: req.user._id
+                }
+            },
+
+            {
+                $group: {
+
+                    _id: "$category",
+
+                    totalAmount: {
+                        $sum: "$amount"
+                    },
+
+                    totalTransactions: {
+                        $sum: 1
+                    }
+
+                }
+            },
+
+            {
+                $sort: {
+                    totalAmount: -1
+                }
+            }
+
+        ]);
+
         res.status(200).json({
+
             success: true,
-            message: "Category analytics API working"
+
+            analytics
+
         });
 
     } catch (error) {
 
         res.status(500).json({
+
             success: false,
+
             message: error.message
+
         });
 
     }
