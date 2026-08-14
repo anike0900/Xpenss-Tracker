@@ -666,3 +666,65 @@
 
 
 })();
+
+// ==========================================
+// DASHBOARD SUMMARY
+// ==========================================
+
+async function getDashboardSummary() {
+
+    try {
+
+        const token =
+            localStorage.getItem("token");
+
+        const response = await fetch(
+            "http://localhost:5000/api/v1/dashboard/summary",
+            {
+                method: "GET",
+
+                headers: {
+                    Authorization:
+                        `Bearer ${token}`
+                }
+            }
+        );
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+
+            console.log(data.message);
+
+            return;
+        }
+
+        document.getElementById(
+            "totalBalance"
+        ).textContent =
+            `₹${data.totalBalance}`;
+
+        document.getElementById(
+            "totalIncome"
+        ).textContent =
+            `₹${data.totalIncome}`;
+
+        document.getElementById(
+            "totalExpense"
+        ).textContent =
+            `₹${data.totalExpense}`;
+
+    } catch (error) {
+
+        console.error(
+            "Dashboard Summary Error:",
+            error
+        );
+
+    }
+
+}
+
+getCurrentUser();
+getDashboardSummary();
