@@ -6,8 +6,16 @@ const protect = require("../middleware/authMiddleware");
 const {
     getMonthlyAnalytics,
     getCategoryAnalytics,
-    getRecentTransactions
+    getRecentTransactions,
+    exportTransactions
 } = require("../controllers/analyticsController");
+
+
+router.get(
+    "/export",
+    protect,
+    exportTransactions
+);
 
 router.get(
     "/monthly",
