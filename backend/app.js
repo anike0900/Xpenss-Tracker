@@ -8,6 +8,7 @@ const errorHandler = require("./middleware/errorMiddleware");
 const expenseRoutes = require("./routes/expenseRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const incomeRoutes = require("./routes/incomeRoutes");
+const analyticsRoutes = require("./routes/analyticsRoutes");
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/expenses", expenseRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
 app.use("/api/v1/income", incomeRoutes);
+app.use("/api/v1/analytics", analyticsRoutes);
 // Health Check
 app.get("/", (req, res) => {
     res.status(200).json({
